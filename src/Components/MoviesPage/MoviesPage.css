@@ -1,0 +1,12 @@
+.carouselSlider {
+    display: flex;
+}
+.heading {
+    display: flex;
+    justify-content: space-between;
+}
+.heading a {
+    display: flex;
+    align-items: end;
+}
+  

@@ -1,0 +1,13 @@
+.pagination {
+    display: flex;
+    /* align-items: center; */
+}
+.pagination .btn {
+    color: #0d6efd;
+    font-size: large;
+    /* border: 1px #0d6efd solid;
+    height: 30px; */
+}
+.heading p{
+    margin: auto;
+}

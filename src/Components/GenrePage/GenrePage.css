@@ -1,0 +1,15 @@
+.card-body {
+    max-width: 50vh;
+}
+.genreList {
+    display: block;
+}
+.seeMore {
+    cursor: pointer;
+}
+.btn-pill {
+    border-radius: 15px;
+}
+.listOfGenres {
+    display: block;
+}
