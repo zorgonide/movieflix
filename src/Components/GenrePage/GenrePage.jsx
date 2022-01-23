@@ -3,11 +3,9 @@ import {Rings} from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import { fget } from '../../Utilities/apiCalls';
 import Error from "../ErrorPage/ErrorPage"
-
-
 import "./GenrePage.css"
-function GenrePage(props) {
 
+function GenrePage(props) {
 	const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [genres, setGenres] = useState([]);
@@ -93,13 +91,6 @@ function GenrePage(props) {
                         </div>
 						<div className="card-footer text-center">
 							<button onClick={goToMoviesPage} className={ highlightedButtons.length ? "btn btn-primary" : "btn btn-primary disabled"}>Continue</button>
-							{/* <Link 
-								className={ highlightedButtons.length ? "btn btn-primary" : "btn btn-primary disabled"}
-								to={{
-									pathname: `/movies`, 
-								}}>
-								Continue
-							</Link> */}
 						</div>
                     </div>
                 </div>
@@ -107,5 +98,4 @@ function GenrePage(props) {
         </div>
     );
 }
-
 export default GenrePage;

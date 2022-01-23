@@ -19,8 +19,8 @@ const CardsRow = ({movies}) => {
                             </HideUntilLoaded>
                         </div>
                         <div className="">
-                                <p className='mt-1 mb-0 text-muted'>{ele.release_date}</p>
-                                <p class="fw-bold text-break">{ele.title.length < 30 ? ele.title : ele.title.slice(0, 30) + "..."}</p>
+                            <p className='mt-1 mb-0 text-muted'>{ele.release_date}</p>
+                            <p class="fw-bold text-break">{ele.title.length < 30 ? ele.title : ele.title.slice(0, 30) + "..."}</p>
                         </div>
                     </div>
                 )
