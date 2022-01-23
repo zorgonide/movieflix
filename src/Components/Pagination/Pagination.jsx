@@ -9,12 +9,12 @@ const Pagination = ({ paginate, totalPages, currentPage }) => {
     return (
         <div className='pagination'>
             <div className="heading">
-                <p className='fst-italic'>{`Page ${currentPage} of ${totalPages}`}</p>
+                <p className='text-muted'>{`${currentPage} / ${totalPages}`}</p>
             </div>
-            <button onClick={() => paginate(currentPage -1)} className='btn mx-2' disabled={currentPage === 1}>
+            <button onClick={() => paginate(currentPage -1)} className='btn' disabled={currentPage === 1}>
                 <span aria-hidden="true">&laquo;</span>
             </button>
-            <button onClick={() => paginate(currentPage + 1)} className='btn mx-2' disabled={currentPage === totalPages}>
+            <button onClick={() => paginate(currentPage + 1)} className='btn' disabled={currentPage === totalPages}>
                 <span aria-hidden="true">&raquo;</span>
             </button>
         </div>

@@ -4,7 +4,7 @@ import {Rings} from 'react-loader-spinner';
 
 const CardsRow = ({movies}) => {
     return (
-        <div class="row row-cols-2 row-cols-md-6 g-4 my-2">
+        <div class="row row-cols-2 row-cols-md-6 g-3 my-1">
             {movies.map((ele) => {
                 return (
                     <div className="col">

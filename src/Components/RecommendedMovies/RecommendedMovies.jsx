@@ -5,7 +5,6 @@ import { fget } from '../../Utilities/apiCalls';
 import Error from "../ErrorPage/ErrorPage"
 import "./RecommendedMovies.css"
 import {GenreContext} from "../MainComponent/MainComponent"
-import { HideUntilLoaded } from 'react-animation'
 import CardsRow from '../CardsRow/CardsRow';
 import Pagination from '../Pagination/Pagination';
 
@@ -64,9 +63,11 @@ function RecommendedMovies() {
     else return( 
         
         <div className="container">
-			<div className="row justify-content-center">
+			<div className="row mt-2 justify-content-center">
 				<div className="heading">
-					<h4 className='mt-4'>Recommended Movies</h4>
+                    <div class="ten">
+                        <h1>Recommended Movies</h1>
+                    </div>
                     <Pagination
                         totalPages={totalPages}
                         currentPage={currentPage}

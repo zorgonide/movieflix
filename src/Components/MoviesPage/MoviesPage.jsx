@@ -6,7 +6,6 @@ import { fget } from '../../Utilities/apiCalls';
 import Error from "../ErrorPage/ErrorPage"
 import "./MoviesPage.css"
 import {GenreContext} from "../MainComponent/MainComponent"
-import { HideUntilLoaded } from 'react-animation'
 import CardsRow from '../CardsRow/CardsRow';
 
 function MoviesPage(props) {
@@ -87,12 +86,13 @@ function MoviesPage(props) {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <h4 className='display-6 mt-4'>MovieFlix</h4>
-                        <hr></hr>
+                        {/* <h4 className='display-6 mt-4'>MovieFlix</h4> */}
                     </div>
                 </div>
-                <div className="row justify-content-center">
-                    <h4>Upcoming</h4>
+                <div className="row mt-2 justify-content-center">
+                    <div class="ten">
+                        <h1>Upcoming Movies</h1>
+                    </div>
                     <div className="col-12 col-sm-10 carouselSlider mt-2">
                         <UncontrolledCarousel
                             items={upcoming}
@@ -105,7 +105,9 @@ function MoviesPage(props) {
                 <br></br>
                 <div className="row justify-content-center mt-2">
                     <div className="heading">
-                        <h4>Top Rated</h4>
+                        <div class="ten">
+                            <h1>Top Rated Movies</h1>
+                        </div>
                         <Link to={"/top-rated"} style={{ textDecoration: "none" }}>View more</Link>
                     </div>
                     <div className="col-12">
@@ -115,8 +117,10 @@ function MoviesPage(props) {
                 <br></br>
                 <div className="row justify-content-center">
                 <div className="heading">
-                        <h4>Recommended Movies</h4>
-                        <Link to={"/recommended"} style={{ textDecoration: "none" }}>View more</Link>
+                    <div class="ten">
+                        <h1>Recommended Movies</h1>
+                    </div>
+                    <Link to={"/recommended"} style={{ textDecoration: "none" }}>View more</Link>
                     </div>
                     <div className="col-12">
                         <CardsRow movies={recommended}></CardsRow>

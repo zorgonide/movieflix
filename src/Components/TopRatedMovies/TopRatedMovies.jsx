@@ -1,11 +1,8 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Rings} from 'react-loader-spinner';
-import { Link, useNavigate } from 'react-router-dom';
 import { fget } from '../../Utilities/apiCalls';
 import Error from "../ErrorPage/ErrorPage"
 import "./TopRatedMovies.css"
-import {GenreContext} from "../MainComponent/MainComponent"
-import { HideUntilLoaded } from 'react-animation'
 import CardsRow from '../CardsRow/CardsRow';
 import Pagination from '../Pagination/Pagination';
 
@@ -54,9 +51,11 @@ function TopRatedMovies() {
     }
     else return(
 		<div className="container">
-			<div className="row justify-content-center">
+			<div className="row mt-2 justify-content-center">
 			<div className="heading">
-					<h4 className='mt-4'>Top Rated Movies</h4>
+                    <div class="ten">
+                        <h1>Top Rated Movies</h1>
+                    </div>
                     <Pagination
                         totalPages={totalPages}
                         currentPage={currentPage}
