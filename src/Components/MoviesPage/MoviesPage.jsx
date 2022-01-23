@@ -89,7 +89,7 @@ function MoviesPage(props) {
                         {/* <h4 className='display-6 mt-4'>MovieFlix</h4> */}
                     </div>
                 </div>
-                <div className="row mt-2 justify-content-center">
+                <div className="row pt-2 justify-content-center">
                     <div class="ten">
                         <h1>Upcoming Movies</h1>
                     </div>

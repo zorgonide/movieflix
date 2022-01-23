@@ -51,7 +51,7 @@ function TopRatedMovies() {
     }
     else return(
 		<div className="container">
-			<div className="row mt-2 justify-content-center">
+			<div className="row pt-2 justify-content-center">
 			<div className="heading">
                     <div class="ten">
                         <h1>Top Rated Movies</h1>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { HideUntilLoaded } from 'react-animation'
 import {Rings} from 'react-loader-spinner';
-
+import * as dayjs from "dayjs"
 const CardsRow = ({movies}) => {
     return (
         <div class="row row-cols-2 row-cols-md-6 g-3 my-1">
@@ -18,9 +18,9 @@ const CardsRow = ({movies}) => {
 
                             </HideUntilLoaded>
                         </div>
-                        <div className="">
-                            <p className='mt-1 mb-0 text-muted'>{ele.release_date}</p>
-                            <p class="fw-bold text-break">{ele.title.length < 30 ? ele.title : ele.title.slice(0, 30) + "..."}</p>
+                        <div className="text-center">
+                            <p class="mb-0 mt-2 text-break">{ele.title.length < 30 ? ele.title : ele.title.slice(0, 30) + "..."}</p>
+                            <p className='mt-0 text-muted'>{dayjs(ele.release_date).format("MMMM D, YYYY")}</p>
                         </div>
                     </div>
                 )
