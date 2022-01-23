@@ -90,7 +90,7 @@ function MoviesPage(props) {
                     </div>
                 </div>
                 <div className="row pt-2 justify-content-center">
-                    <div class="ten">
+                    <div className="ten">
                         <h1>Upcoming Movies</h1>
                     </div>
                     <div className="col-12 col-sm-10 carouselSlider mt-2">
@@ -105,7 +105,7 @@ function MoviesPage(props) {
                 <br></br>
                 <div className="row justify-content-center mt-2">
                     <div className="heading">
-                        <div class="ten">
+                        <div className="ten">
                             <h1>Top Rated Movies</h1>
                         </div>
                         <Link to={"/top-rated"} style={{ textDecoration: "none" }}>View more</Link>
@@ -117,7 +117,7 @@ function MoviesPage(props) {
                 <br></br>
                 <div className="row justify-content-center">
                 <div className="heading">
-                    <div class="ten">
+                    <div className="ten">
                         <h1>Recommended Movies</h1>
                     </div>
                     <Link to={"/recommended"} style={{ textDecoration: "none" }}>View more</Link>

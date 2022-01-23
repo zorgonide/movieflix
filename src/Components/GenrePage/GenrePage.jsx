@@ -83,7 +83,7 @@ function GenrePage(props) {
                 <div className="col">
                     <div className="card">
                         <div className="card-body" >
-							<div class="twelve card-title">
+							<div className="twelve card-title">
 								<h1>MovieFlix</h1>
 							</div>
                             <p className="card-text">Select the genres you're interested in...</p>

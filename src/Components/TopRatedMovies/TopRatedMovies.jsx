@@ -53,7 +53,7 @@ function TopRatedMovies() {
 		<div className="container">
 			<div className="row pt-2 justify-content-center">
 			<div className="heading">
-                    <div class="ten">
+                    <div className="ten">
                         <h1>Top Rated Movies</h1>
                     </div>
                     <Pagination
