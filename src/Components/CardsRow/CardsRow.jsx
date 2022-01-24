@@ -19,7 +19,7 @@ const CardsRow = ({movies}) => {
                             </HideUntilLoaded>
                         </div>
                         <div className="text-center">
-                            <p className="mb-0 mt-2 text-break">{ele.title.length < 30 ? ele.title : ele.title.slice(0, 30) + "..."}</p>
+                            <p className="mb-0 mt-2 text-break" title={ele.title}>{ele.title.length < 30 ? ele.title : ele.title.slice(0, 30) + "..."}</p>
                             <p className='mt-0 text-muted'>{dayjs(ele.release_date).format("MMMM D, YYYY")}</p>
                         </div>
                     </div>
