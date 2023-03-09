@@ -1,14 +1,14 @@
-import React from 'react'
-import Pic from '../../Shared/images/Error2.svg'
-import Loader from 'react-loader-spinner'
-import { HideUntilLoaded } from 'react-animation'
+import React from "react";
+import Pic from "../../Shared/images/Error2.svg";
+// import Loader from 'react-loader-spinner'
+import { HideUntilLoaded } from "react-animation";
 
 //Standard error component
 
-function Error({error}) {
-    return (
-        <>
-            <div className="container">
+function Error({ error }) {
+  return (
+    <>
+      {/* <div className="container">
                 <div className="row justify-content-center" style={{height: "80vh"}}>
                     <div className="col-12 col-sm-5 align-self-center">
                         <div className="card text-center border">
@@ -26,9 +26,9 @@ function Error({error}) {
                         </div>
                     </div>
                 </div>
-            </div>
-        </>
-    )
+            </div> */}
+    </>
+  );
 }
 
-export default Error
+export default Error;
