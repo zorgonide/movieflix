@@ -35,7 +35,7 @@ function RegisterComponent() {
   return (
     <div className="container centered">
       <div className="row justify-content-center">
-        <div className="col-12 col-sm-6">
+        <div className="col-12 col-sm-5">
           <div className="card">
             <div className="card-body">
               <div className="twelve card-title">

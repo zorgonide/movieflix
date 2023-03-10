@@ -35,7 +35,7 @@ const CardsRow = ({ movies }) => {
                   : ele.title.slice(0, 30) + "..."}
               </p>
               <p className="mt-0 sub-title">
-                {dayjs(ele.release_date).format("MMMM D, YYYY")}
+                {dayjs(ele.release_date).format("YYYY")}
               </p>
             </div>
           </div>

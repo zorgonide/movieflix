@@ -9,7 +9,7 @@ function Error({ error }) {
   return (
     <>
       {/* <div className="container">
-                <div className="row justify-content-center" style={{height: "80vh"}}>
+                <div className="row justify-content-center" style={{height: "100vh"}}>
                     <div className="col-12 col-sm-5 align-self-center">
                         <div className="card text-center border">
                             <HideUntilLoaded

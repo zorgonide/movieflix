@@ -87,6 +87,8 @@ function MoviesPage(props) {
     return (
       <div
         style={{
+          width: "100%",
+          height: "100vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -99,11 +101,6 @@ function MoviesPage(props) {
     return (
       <>
         <div className="container">
-          {/* <div className="row">
-            <div className="col">
-              <h4 className="display-6 mt-4">MovieFlix</h4>
-            </div>
-          </div> */}
           <div className="row pt-2 justify-content-center">
             <div className="ten">
               <h1>Upcoming Movies</h1>

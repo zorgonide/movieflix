@@ -84,6 +84,7 @@ h1 em {
   margin: auto;
   white-space: nowrap;
   padding-bottom: 13px;
+  color: black;
 }
 .twelve h1:before {
   background-color: $theme-red;
@@ -115,6 +116,7 @@ h1 em {
   white-space: nowrap;
   padding-bottom: 13px;
   color: white;
+  cursor: pointer;
 }
 .logo h1:before {
   background-color: $theme-red;
@@ -185,6 +187,8 @@ h1 em {
   font-size: large;
   border-style: solid;
   padding: 2px 8px;
+  border-width: 1px;
+  border-radius: 5px;
   :hover {
     color: $title !important;
   }
