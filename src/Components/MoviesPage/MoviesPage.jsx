@@ -5,7 +5,6 @@ import { UncontrolledCarousel } from "reactstrap";
 import { fget } from "../../Utilities/apiCalls";
 import Error from "../ErrorPage/ErrorPage";
 import "./MoviesPage.css";
-import { GenreContext } from "../MainComponent/MainComponent";
 import CardsRow from "../CardsRow/CardsRow";
 import { useUser } from "../../Shared/js/user-context";
 
@@ -100,11 +99,11 @@ function MoviesPage(props) {
     return (
       <>
         <div className="container">
-          <div className="row">
+          {/* <div className="row">
             <div className="col">
               <h4 className="display-6 mt-4">MovieFlix</h4>
             </div>
-          </div>
+          </div> */}
           <div className="row pt-2 justify-content-center">
             <div className="ten">
               <h1>Upcoming Movies</h1>
@@ -119,31 +118,32 @@ function MoviesPage(props) {
             </div>
           </div>
           <br></br>
-          <div className="row justify-content-center mt-2">
-            <div className="heading">
-              <div className="ten">
-                <h1>Top Rated Movies</h1>
-              </div>
-              <Link to={"/top-rated"} style={{ textDecoration: "none" }}>
-                View more
-              </Link>
-            </div>
-            <div className="col-12">
-              <CardsRow movies={topRated}></CardsRow>
-            </div>
-          </div>
-          <br></br>
+
           <div className="row justify-content-center">
             <div className="heading">
               <div className="ten">
                 <h1>Recommended Movies</h1>
               </div>
-              <Link to={"/recommended"} style={{ textDecoration: "none" }}>
+              <Link to={"/recommended"} className="view-more">
                 View more
               </Link>
             </div>
             <div className="col-12">
               <CardsRow movies={recommended}></CardsRow>
+            </div>
+          </div>
+          <br></br>
+          <div className="row justify-content-center mt-2">
+            <div className="heading">
+              <div className="ten">
+                <h1>Top Rated Movies</h1>
+              </div>
+              <Link to={"/top-rated"} className="view-more">
+                View more
+              </Link>
+            </div>
+            <div className="col-12">
+              <CardsRow movies={topRated}></CardsRow>
             </div>
           </div>
           <br></br>

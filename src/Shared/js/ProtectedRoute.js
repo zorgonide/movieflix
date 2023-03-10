@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
-// import Header from "../Pages/Header";
+import Header from "../../Components/HeaderComponent/HeaderComponent";
 import { useUser } from "./user-context";
 
 function ProtectedRoute(props) {
@@ -10,7 +10,7 @@ function ProtectedRoute(props) {
   let verified = loggedIn;
   return verified ? (
     <>
-      {/* <Header /> */}
+      <Header />
       <Outlet />
     </>
   ) : (

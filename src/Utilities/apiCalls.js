@@ -1,25 +1,41 @@
 import axios from "axios";
 const backend = "http://127.0.0.1:8000/";
+
+let cache = {};
 export const fget = async ({ url }) => {
+  if (cache[url]) {
+    return cache[url];
+  }
   const res = await axios.get(process.env.REACT_APP_BASE_URL + `${url}`, {});
+  cache[url] = res;
   return res;
 };
 
 export const fpatch = async ({ url, data }) => {
+  if (cache[url]) {
+    return cache[url];
+  }
   const res = await axios.patch(
     process.env.REACT_APP_BASE_URL + `${url}`,
     data,
     {}
   );
+  cache[url] = res;
+
   return res;
 };
 
 export const fpost = async ({ url, data }) => {
+  if (cache[url]) {
+    return cache[url];
+  }
   const res = await axios.post(
     process.env.REACT_APP_BASE_URL + `${url}`,
     data,
     {}
   );
+  cache[url] = res;
+
   return res;
 };
 

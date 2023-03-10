@@ -3,11 +3,15 @@
     /* align-items: center; */
 }
 .pagination .btn {
-    color: #0d6efd;
+    color: white;
     font-size: large;
+    font-weight: 800;
     /* border: 1px #0d6efd solid;
     height: 30px; */
 }
 .heading p{
     margin: auto;
+}
+.pages {
+    color: white
 }

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../../Shared/js/user-context";
 import { fget } from "../../Utilities/apiCalls";
 import Error from "../ErrorPage/ErrorPage";
+import Genre from "../../Shared/images/register.svg";
 import "./GenrePage.css";
 
 function GenrePage(props) {
@@ -45,8 +46,8 @@ function GenrePage(props) {
     }
   };
   const GenreList = () => {
-    let buttonClass = "btn rounded-pill btn-sm btn-outline-primary m-1";
-    let buttonSelectedClass = "btn rounded-pill btn-sm btn-primary m-1";
+    let buttonClass = "btn rounded-pill btn-sm btn-outline-danger m-1";
+    let buttonSelectedClass = "btn rounded-pill btn-sm btn-danger m-1";
     return (
       <>
         {genres.map((ele, index) => {
@@ -112,8 +113,8 @@ function GenrePage(props) {
           <div className="col-12 col-sm-5">
             <div className="card">
               <div className="card-body">
-                <div className="twelve card-title">
-                  <h1>MovieFlix</h1>
+                <div className="img mx-auto my-2">
+                  <img src={Genre} alt="login" />
                 </div>
                 <p className="card-text">
                   Select the genres you're interested in...

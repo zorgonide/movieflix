@@ -1,7 +1,13 @@
 $theme-red: #e31c5f;
-$title-text: #d27685;
-.title {
+$title-text: #9e4784;
+$title: #d27685;
+.movie-title {
   color: $title-text;
+  font-weight: 500;
+  font-size: large;
+}
+.sub-title {
+  color: whitesmoke;
 }
 .error {
   color: $theme-red;
@@ -37,12 +43,14 @@ h1 {
   font-family: "Raleway", sans-serif;
   font-weight: 300;
   font-size: 40px;
-  color: #080808;
+  color: white;
   -webkit-transition: all 0.4s ease 0s;
   -o-transition: all 0.4s ease 0s;
   transition: all 0.4s ease 0s;
 }
-
+.error-details {
+  color: white;
+}
 h1 span {
   display: block;
   font-size: 0.5em;
@@ -54,7 +62,8 @@ h1 em {
 }
 .ten h1 {
   font-size: 24px;
-  font-weight: 500;
+  color: $title;
+  font-weight: 600;
 }
 .ten h1:before {
   background-color: #0d6efd;
@@ -85,6 +94,37 @@ h1 em {
   margin-bottom: 5px;
 }
 .twelve h1:after {
+  background-color: $theme-red;
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  width: 75px;
+  margin-bottom: 0.25em;
+}
+.logo h1 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: 160px;
+  text-align: center;
+  margin: auto;
+  white-space: nowrap;
+  padding-bottom: 13px;
+  color: white;
+}
+.logo h1:before {
+  background-color: $theme-red;
+  content: "";
+  display: block;
+  height: 3px;
+  width: 75px;
+  margin-bottom: 5px;
+}
+.logo h1:after {
   background-color: $theme-red;
   content: "";
   display: block;
@@ -139,4 +179,23 @@ h1 em {
 .img {
   overflow: auto;
   width: fit-content;
+}
+.view-more {
+  text-decoration: none;
+  font-size: large;
+  border-style: solid;
+  padding: 2px 8px;
+  :hover {
+    color: $title !important;
+  }
+}
+.logout {
+  text-align: right;
+}
+.nav-link {
+  color: white !important;
+  font-size: large;
+}
+.navbar-dark {
+  background-color: #66347f;
 }
