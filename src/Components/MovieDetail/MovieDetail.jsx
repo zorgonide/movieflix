@@ -6,15 +6,21 @@ import SingleCard from "../CardsRow/SingleCard";
 import Error from "../ErrorPage/ErrorPage";
 import { CommentSection } from "react-comments-section";
 import "react-comments-section/dist/index.css";
+import { useUser } from "../../Shared/js/user-context";
 
 function MovieDetail() {
   let { movieId } = useParams();
   const location = useLocation();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isCommentLoaded, setIsCommentLoaded] = useState(false);
   const [movie, setMovie] = useState(location.state.movie);
-  const [comment, setComments] = useState(null);
+  const [comments, setComments] = useState(null);
   const [backendMovie, setBackendMovie] = useState(null);
+  const {
+    state: { user },
+  } = useUser();
+
   useEffect(() => {
     postBackend({
       url: "movie/movieGet",
@@ -47,10 +53,22 @@ function MovieDetail() {
       .then((res) => res.data)
       .then(
         (result) => {
-          setComments(result);
+          setIsCommentLoaded(true);
+          let newC = result.map((ele) => {
+            return {
+              userId: ele.User_ID,
+              comId: ele.Comment_ID,
+              fullName: "Test user" + Math.floor(Math.random() * 10),
+              text: ele.Comment,
+              avatarUrl:
+                "https://ui-avatars.com/api/name=Test&background=random",
+              replies: [],
+            };
+          });
+          setComments(newC);
         },
         (error) => {
-          setIsLoaded(true);
+          setIsCommentLoaded(true);
           setError(error);
         }
       );
@@ -86,6 +104,30 @@ function MovieDetail() {
               </div>
             </div>
             <div className="description my-4">{backendMovie.Description}</div>
+            <div className="comments">
+              <CommentSection
+                currentUser={{
+                  currentUserId: user.User_ID,
+                  currentUserImg:
+                    "https://ui-avatars.com/api/name=Test&background=random",
+                  currentUserFullName: "You", // names
+                }}
+                commentData={comments}
+                onSubmitAction={(data) => {
+                  postBackend({
+                    url: "comment/commentAdd",
+                    data: {
+                      User_ID: user.User_ID,
+                      Movie_ID: movieId,
+                      Comment: data.text,
+                    },
+                  });
+                }}
+                currentData={(data) => {
+                  console.log("curent data", data);
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -213,3 +213,12 @@ h1 em {
   color: white;
   font-size: larger;
 }
+.comments {
+  .halfDiv,
+  .no-comDiv {
+    color: white;
+  }
+  .comment-title {
+    color: $title-text;
+  }
+}
