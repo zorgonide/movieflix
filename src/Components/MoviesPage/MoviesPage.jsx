@@ -17,7 +17,7 @@ function MoviesPage(props) {
   const [upcoming, setUpcoming] = useState([]);
   const [topRated, setTopRated] = useState([]);
   const [recommended, setRecommended] = useState([]);
-  const genres = user.genres;
+  const genres = user.genres || [];
   let navigate = useNavigate();
 
   const formatFunctionUpcoming = (movies) => {
@@ -99,53 +99,51 @@ function MoviesPage(props) {
     );
   } else
     return (
-      <>
-        <div className="container">
-          <div className="row pt-2 justify-content-center">
-            <div className="ten">
-              <h1>Upcoming Movies</h1>
-            </div>
-            <div className="col-12 col-sm-10 carouselSlider mt-2">
-              <UncontrolledCarousel
-                items={upcoming}
-                indicators={false}
-                autoPlay={true}
-                controls={true}
-              />
-            </div>
+      <div className="container">
+        <div className="row pt-2 justify-content-center">
+          <div className="ten">
+            <h1>Upcoming Movies</h1>
           </div>
-          <br></br>
-
-          <div className="row justify-content-center">
-            <div className="heading">
-              <div className="ten">
-                <h1>Recommended Movies</h1>
-              </div>
-              <Link to={"/recommended"} className="view-more">
-                View more
-              </Link>
-            </div>
-            <div className="col-12">
-              <CardsRow movies={recommended}></CardsRow>
-            </div>
+          <div className="col-12 col-sm-10 carouselSlider mt-2">
+            <UncontrolledCarousel
+              items={upcoming}
+              indicators={false}
+              autoPlay={true}
+              controls={true}
+            />
           </div>
-          <br></br>
-          <div className="row justify-content-center mt-2">
-            <div className="heading">
-              <div className="ten">
-                <h1>Top Rated Movies</h1>
-              </div>
-              <Link to={"/top-rated"} className="view-more">
-                View more
-              </Link>
-            </div>
-            <div className="col-12">
-              <CardsRow movies={topRated}></CardsRow>
-            </div>
-          </div>
-          <br></br>
         </div>
-      </>
+        <br></br>
+
+        <div className="row justify-content-center">
+          <div className="heading">
+            <div className="ten">
+              <h1>Recommended Movies</h1>
+            </div>
+            <Link to={"/recommended"} className="view-more">
+              View more
+            </Link>
+          </div>
+          <div className="col-12">
+            <CardsRow movies={recommended}></CardsRow>
+          </div>
+        </div>
+        <br></br>
+        <div className="row justify-content-center mt-2">
+          <div className="heading">
+            <div className="ten">
+              <h1>Top Rated Movies</h1>
+            </div>
+            <Link to={"/top-rated"} className="view-more">
+              View more
+            </Link>
+          </div>
+          <div className="col-12">
+            <CardsRow movies={topRated}></CardsRow>
+          </div>
+        </div>
+        <br></br>
+      </div>
     );
 }
 

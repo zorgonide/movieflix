@@ -19,7 +19,7 @@ function LoginComponent() {
   return (
     <div className="container centered">
       <div className="row justify-content-center">
-        <div className="col-12 col-sm-5">
+        <div className="col-12 col-md-5">
           <div className="card">
             <div className="card-body">
               <div className="twelve card-title">
@@ -35,46 +35,23 @@ function LoginComponent() {
                 }}
                 validationSchema={LoginSchema}
                 onSubmit={(values) => {
-                  // postBackend({
-                  //   url: `userprofile/login`,
-                  //   data: {
-                  //     Username: values.email,
-                  //     Password: values.password,
-                  //   },
-                  // })
-                  new Promise((resolve, reject) => {
-                    setLoading(true);
-                    setTimeout(
-                      () =>
-                        resolve({
-                          success: 1,
-                          info: {
-                            userID: 1,
-                            genres: [],
-                            name: "Ammar",
-                          },
-                        }),
-                      2000
-                    );
+                  postBackend({
+                    url: `userprofile/login`,
+                    data: {
+                      Email: values.email,
+                      Password: values.password,
+                    },
                   })
-                    // .then((res) => res.data)
+                    .then((res) => res.data)
                     .then((res) => {
                       if (res.success) {
                         setLoading(false);
-                        dispatch({ type: "login", user: res.info });
-                        res.info.genres.length
-                          ? navigate("/")
-                          : navigate("/genres");
-                      } else {
-                        Swal.fire({
-                          title: "Error",
-                          text: `Incorrect username or password`,
-                          icon: "error",
-                          confirmButtonText: "Dismiss",
-                        });
-                      }
+                        dispatch({ type: "login", user: res });
+                        res.Genres.length ? navigate("/") : navigate("/genres");
+                      } else throw new Error();
                     })
-                    .catch(() => {
+                    .catch((err) => {
+                      console.log(err);
                       Swal.fire({
                         title: "Error",
                         text: `Incorrect username or password`,

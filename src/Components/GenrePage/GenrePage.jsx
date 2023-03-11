@@ -86,7 +86,8 @@ function GenrePage(props) {
     );
   };
   const goToMoviesPage = () => {
-    dispatch({ type: "genres", genres: highlightedButtons });
+    dispatch({ type: "genres", Genres: highlightedButtons });
+
     // props.setGenres(highlightedButtons);
     navigate("/");
   };
@@ -110,7 +111,7 @@ function GenrePage(props) {
     return (
       <div className="container centered">
         <div className="row justify-content-center">
-          <div className="col-12 col-sm-5">
+          <div className="col-12 col-md-5">
             <div className="card">
               <div className="card-body">
                 <div className="img mx-auto my-2">

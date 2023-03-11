@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { fpost } from "../../Utilities/apiCalls";
+import { fpost, postBackend } from "../../Utilities/apiCalls";
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import Swal from "sweetalert2";
@@ -35,7 +35,7 @@ function RegisterComponent() {
   return (
     <div className="container centered">
       <div className="row justify-content-center">
-        <div className="col-12 col-sm-5">
+        <div className="col-12 col-md-5">
           <div className="card">
             <div className="card-body">
               <div className="twelve card-title">
@@ -65,19 +65,18 @@ function RegisterComponent() {
                   }}
                   validationSchema={SignUpSchema}
                   onSubmit={async (values) => {
-                    fpost({
+                    postBackend({
                       url: "userprofile/register",
                       data: {
-                        first_name: values.firstname,
-                        last_name: values.lastname,
-                        Username: values.email,
-                        // type: "customer",
+                        First_name: values.firstname,
+                        Last_name: values.lastname,
+                        Email: values.email,
                         Password: values.password,
                       },
                     })
                       .then((res) => res.data)
                       .then((res) => {
-                        if (res.success) {
+                        if (res === "Added Successfully!") {
                           Swal.fire({
                             confirmButtonColor: "#4fbfa8",
                             title: "Success",
@@ -87,7 +86,7 @@ function RegisterComponent() {
                           }).then((res) => {
                             if (res.isConfirmed) navigate("/login");
                           });
-                        }
+                        } else throw new Error();
                       })
                       .catch(() => {
                         Swal.fire({

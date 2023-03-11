@@ -18,7 +18,7 @@ function RecommendedMovies() {
   const {
     state: { user },
   } = useUser();
-  const genres = user.genres;
+  const genres = user.genres || [];
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);

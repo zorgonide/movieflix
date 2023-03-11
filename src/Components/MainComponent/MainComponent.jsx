@@ -4,6 +4,7 @@ import ProtectedRoute from "../../Shared/js/ProtectedRoute";
 import GenrePage from "../GenrePage/GenrePage";
 import Header from "../HeaderComponent/HeaderComponent";
 import LoginComponent from "../LoginComponent/LoginComponent";
+import MovieDetail from "../MovieDetail/MovieDetail";
 import MoviesPage from "../MoviesPage/MoviesPage";
 import NotFound from "../NotFound/NotFound";
 import RecommendedMovies from "../RecommendedMovies/RecommendedMovies";
@@ -39,6 +40,7 @@ function MainComponent(props) {
               </GenreContext.Provider>
             }
           />
+          <Route path="/movie/:movieId" element={<MovieDetail />} />
           <Route exact path="/top-rated" element={<TopRatedMovies />} />
         </Route>
         <Route path="*" element={<NotFound />} />

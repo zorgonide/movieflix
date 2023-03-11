@@ -19,6 +19,12 @@ $title: #d27685;
   align-items: center;
   height: 100vh;
 }
+.centered1 {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
 .row {
   width: 100%;
 }
@@ -198,8 +204,12 @@ h1 em {
 }
 .nav-link {
   color: white !important;
-  font-size: large;
+  font-size: larger;
 }
 .navbar-dark {
   background-color: #66347f;
+}
+.description {
+  color: white;
+  font-size: larger;
 }

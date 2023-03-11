@@ -2,12 +2,21 @@ import React from "react";
 import { HideUntilLoaded } from "react-animation";
 import { Rings } from "react-loader-spinner";
 import * as dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 const CardsRow = ({ movies }) => {
+  let navigate = useNavigate();
+
   return (
     <div className="row row-cols-2 row-cols-md-6 g-3 my-1">
       {movies.map((ele) => {
         return (
-          <div className="col" key={ele.id}>
+          <div
+            className="col"
+            key={ele.id}
+            onClick={() =>
+              navigate(`/movie/${ele.id}`, { state: { movie: ele } })
+            }
+          >
             <div className="card">
               <HideUntilLoaded
                 animationIn="popIn"
