@@ -7,6 +7,7 @@ import LoginComponent from "../LoginComponent/LoginComponent";
 import MovieDetail from "../MovieDetail/MovieDetail";
 import MoviesPage from "../MoviesPage/MoviesPage";
 import NotFound from "../NotFound/NotFound";
+import ProfilePage from "../ProfilePage/ProfilePage";
 import RecommendedMovies from "../RecommendedMovies/RecommendedMovies";
 import RegisterComponent from "../RegisterComponent/RegisterComponent";
 import TopRatedMovies from "../TopRatedMovies/TopRatedMovies";
@@ -40,8 +41,10 @@ function MainComponent(props) {
               </GenreContext.Provider>
             }
           />
+
           <Route path="/movie/:movieId" element={<MovieDetail />} />
           <Route exact path="/top-rated" element={<TopRatedMovies />} />
+          <Route exact path="/profile" element={<ProfilePage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

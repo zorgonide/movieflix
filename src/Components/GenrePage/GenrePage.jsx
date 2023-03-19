@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Rings } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../Shared/js/user-context";
-import { fget, patchBackend, postBackend } from "../../Utilities/apiCalls";
+import { fget, patchBackend } from "../../Utilities/apiCalls";
 import Error from "../ErrorPage/ErrorPage";
 import Genre from "../../Shared/images/register.svg";
 import "./GenrePage.css";

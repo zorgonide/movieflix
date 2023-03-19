@@ -63,7 +63,7 @@ function RegisterComponent() {
                     confirmpassword: "",
                   }}
                   validationSchema={SignUpSchema}
-                  onSubmit={async (values) => {
+                  onSubmit={(values) => {
                     postBackend({
                       url: "userprofile/register",
                       data: {
@@ -77,7 +77,7 @@ function RegisterComponent() {
                       .then((res) => {
                         if (res === "Added Successfully!") {
                           Swal.fire({
-                            confirmButtonColor: "#4fbfa8",
+                            confirmButtonColor: "#e31c5f",
                             title: "Success",
                             text: `New user created`,
                             icon: "success",
