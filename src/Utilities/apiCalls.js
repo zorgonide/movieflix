@@ -1,6 +1,6 @@
 import axios from "axios";
 // const backend = "http://127.0.0.1:8000/";
-const backend = "http://34.140.245.56/";
+const backend = "/api/";
 
 let cache = {};
 export const fget = async ({ url }) => {
