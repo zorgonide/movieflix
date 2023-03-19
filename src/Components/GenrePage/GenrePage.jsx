@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../../Shared/js/user-context";
 import { fget, patchBackend } from "../../Utilities/apiCalls";
 import Error from "../ErrorPage/ErrorPage";
-import Genre from "../../Shared/images/register.svg";
+import Genre from "../../Shared/images/Register.svg";
 import "./GenrePage.css";
 
 function GenrePage(props) {
