@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Rings } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../Shared/js/user-context";
-import { fget } from "../../Utilities/apiCalls";
+import { fget, patchBackend, postBackend } from "../../Utilities/apiCalls";
 import Error from "../ErrorPage/ErrorPage";
 import Genre from "../../Shared/images/register.svg";
 import "./GenrePage.css";
@@ -12,9 +12,11 @@ function GenrePage(props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [genres, setGenres] = useState([]);
   const [seeMore, setSeeMore] = useState(false);
-  const [highlightedButtons, setHighlightedButtons] = useState([]);
+  let [highlightedButtons, setHighlightedButtons] = useState([]);
   const { dispatch } = useUser();
-
+  const {
+    state: { user },
+  } = useUser();
   let navigate = useNavigate();
   useEffect(() => {
     fget({
@@ -86,10 +88,17 @@ function GenrePage(props) {
     );
   };
   const goToMoviesPage = () => {
-    dispatch({ type: "genres", Genres: highlightedButtons });
-
-    // props.setGenres(highlightedButtons);
-    navigate("/");
+    patchBackend({
+      url: "userprofile/put",
+      data: {
+        User_ID: user.User_ID,
+        Genres: highlightedButtons.join(","),
+      },
+    }).then(() => {
+      dispatch({ type: "genres", Genres: highlightedButtons });
+      // props.setGenres(highlightedButtons);
+      navigate("/");
+    });
   };
   if (error) {
     return <Error error={error.status_message} />;

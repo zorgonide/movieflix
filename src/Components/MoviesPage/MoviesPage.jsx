@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Rings } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
 import { UncontrolledCarousel } from "reactstrap";
@@ -17,7 +17,8 @@ function MoviesPage(props) {
   const [upcoming, setUpcoming] = useState([]);
   const [topRated, setTopRated] = useState([]);
   const [recommended, setRecommended] = useState([]);
-  const genres = user.genres || [];
+  // const [userState, setUser] = useState(user);
+  const genres = user.Genres || [];
   let navigate = useNavigate();
 
   const formatFunctionUpcoming = (movies) => {
@@ -63,11 +64,7 @@ function MoviesPage(props) {
         }
       );
     fget({
-      url: `/3/discover/movie?api_key=${
-        process.env.REACT_APP_BASE_TOKEN
-      }&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${genres.join(
-        ","
-      )}`,
+      url: `/3/discover/movie?api_key=${process.env.REACT_APP_BASE_TOKEN}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${genres}`,
     })
       .then((res) => res.data)
       .then(

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { fpost, postBackend } from "../../Utilities/apiCalls";
+import { postBackend } from "../../Utilities/apiCalls";
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import Swal from "sweetalert2";
-import Register from "../../Shared/images/register.svg";
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -68,8 +67,8 @@ function RegisterComponent() {
                     postBackend({
                       url: "userprofile/register",
                       data: {
-                        First_name: values.firstname,
-                        Last_name: values.lastname,
+                        First_Name: values.firstname,
+                        Last_Name: values.lastname,
                         Email: values.email,
                         Password: values.password,
                       },
