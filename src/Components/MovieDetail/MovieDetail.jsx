@@ -58,10 +58,11 @@ function MovieDetail() {
             return {
               userId: ele.User_ID,
               comId: ele.Comment_ID,
-              fullName: "Test user" + Math.floor(Math.random() * 10),
+              fullName: ele.First_Name + " " + ele.Last_Name,
               text: ele.Comment,
-              avatarUrl:
-                "https://ui-avatars.com/api/name=Test&background=random",
+              avatarUrl: `https://ui-avatars.com/api/name=${
+                ele.First_Name + "+" + ele.Last_Name
+              }&background=random`,
               replies: [],
             };
           });
@@ -108,9 +109,10 @@ function MovieDetail() {
               <CommentSection
                 currentUser={{
                   currentUserId: user.User_ID,
-                  currentUserImg:
-                    "https://ui-avatars.com/api/name=Test&background=random",
-                  currentUserFullName: "You", // names
+                  currentUserImg: `https://ui-avatars.com/api/name=${
+                    user.First_Name + "+" + user.Last_Name
+                  }&background=random`,
+                  currentUserFullName: user.First_Name + " " + user.Last_Name, // names
                 }}
                 commentData={comments}
                 onSubmitAction={(data) => {
@@ -124,7 +126,7 @@ function MovieDetail() {
                   });
                 }}
                 currentData={(data) => {
-                  console.log("curent data", data);
+                  console.log("current data", data);
                 }}
               />
             </div>
