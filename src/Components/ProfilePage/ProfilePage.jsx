@@ -7,19 +7,32 @@ import Profile from "../../Shared/images/profile.svg";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { patchBackend, postBackend } from "../../Utilities/apiCalls";
 import Swal from "sweetalert2";
+import MoviesWatched from "../CardsRow/MoviesWatched";
 function ProfilePage() {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isWalletLoaded, setIsWalletLoaded] = useState(false);
   const [profile, setProfile] = useState({});
+  const [moviesWatched, setMoviesWatched] = useState([]);
 
   const {
     state: { user },
   } = useUser();
-
+  const MoviesWatchedFunction = () => {
+    return postBackend({
+      url: "watchedList/watchedListSearch",
+      data: {
+        User_ID: user.User_ID,
+      },
+    })
+      .then((res) => res.data)
+      .then((res) => {
+        setMoviesWatched(res);
+      });
+  };
   const fetchUser = () => {
-    postBackend({
+    return postBackend({
       url: "userprofile/get",
       data: {
         User_ID: user.User_ID,
@@ -28,7 +41,6 @@ function ProfilePage() {
       .then((res) => res.data)
       .then((res) => {
         setProfile(res[0]);
-        setIsLoaded(true);
       })
       .catch(() => {
         Swal.fire({
@@ -41,7 +53,9 @@ function ProfilePage() {
   };
 
   useEffect(() => {
-    fetchUser();
+    Promise.all([fetchUser(), MoviesWatchedFunction()]).then(() => {
+      setIsLoaded(true);
+    });
   }, []);
   if (error) {
     return <Error error={error.status_message} />;
@@ -178,6 +192,9 @@ function ProfilePage() {
                 </Formik>
               </div>
             </div>
+          </div>
+          <div className="col-12 col-sm">
+            <MoviesWatched movies={moviesWatched} />
           </div>
         </div>
       </div>

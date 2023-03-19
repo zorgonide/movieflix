@@ -7,6 +7,7 @@ import Error from "../ErrorPage/ErrorPage";
 import { CommentSection } from "react-comments-section";
 import "react-comments-section/dist/index.css";
 import { useUser } from "../../Shared/js/user-context";
+import Swal from "sweetalert2";
 
 function MovieDetail() {
   let { movieId } = useParams();
@@ -14,6 +15,7 @@ function MovieDetail() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isCommentLoaded, setIsCommentLoaded] = useState(false);
+  const [isMovieWatched, setIsMovieWatched] = useState(false);
   const [movie, setMovie] = useState(location.state.movie);
   const [comments, setComments] = useState(null);
   const [backendMovie, setBackendMovie] = useState(null);
@@ -21,8 +23,17 @@ function MovieDetail() {
     state: { user },
   } = useUser();
 
-  useEffect(() => {
+  const addToWatchlist = () => {
     postBackend({
+      url: "watchedList/watchedListAdd",
+      data: {
+        Movie_ID: movie.id,
+        User_ID: user.User_ID,
+      },
+    }).then(() => isMovieWatchedFunction());
+  };
+  const getMovie = () => {
+    return postBackend({
       url: "movie/movieGet",
       data: {
         Movie_ID: movie.id,
@@ -37,14 +48,16 @@ function MovieDetail() {
       .then(
         (result) => {
           setBackendMovie(result);
-          setIsLoaded(true);
+          // setIsLoaded(true);
         },
         (error) => {
-          setIsLoaded(true);
+          // setIsLoaded(true);
           setError(error);
         }
       );
-    postBackend({
+  };
+  const getComments = () => {
+    return postBackend({
       url: "comment/commentGet",
       data: {
         Movie_ID: movieId,
@@ -73,6 +86,27 @@ function MovieDetail() {
           setError(error);
         }
       );
+  };
+  const isMovieWatchedFunction = () => {
+    return postBackend({
+      url: "watchedList/watchedListSearch",
+      data: {
+        User_ID: user.User_ID,
+      },
+    })
+      .then((res) => res.data)
+      .then((res) => {
+        if (Object.keys(res).includes(movieId)) {
+          setIsMovieWatched(true);
+        }
+      });
+  };
+  useEffect(() => {
+    Promise.all([getMovie(), getComments(), isMovieWatchedFunction()]).then(
+      (res, rej) => {
+        setIsLoaded(true);
+      }
+    );
   }, [movie]);
   if (error) {
     return <Error error={error.status_message} />;
@@ -96,6 +130,21 @@ function MovieDetail() {
         <div className="row my-4">
           <div className="col-2">
             <SingleCard movie={backendMovie}></SingleCard>
+            <div className="d-grid gap-2 my-3">
+              {!isMovieWatched ? (
+                <button
+                  type="button"
+                  className="button button1 mb-3"
+                  onClick={addToWatchlist}
+                >
+                  <i className="fa fa-plus"></i> Watchlist
+                </button>
+              ) : (
+                <button type="button" className="button buttonSelected mb-3">
+                  <i className="fa fa-check"></i> Watched
+                </button>
+              )}
+            </div>
           </div>
           <div className="col-3"></div>
           <div className="col">
@@ -127,6 +176,23 @@ function MovieDetail() {
                 }}
                 currentData={(data) => {
                   console.log("current data", data);
+                }}
+                onDeleteAction={(data) => {
+                  postBackend({
+                    url: "comment/commentDel",
+                    data: {
+                      Comment_ID: data.comIdToDelete,
+                    },
+                  }).then(() => {
+                    Swal.fire({
+                      confirmButtonColor: "#4fbfa8",
+                      title: "Success",
+                      text: `Deleted comment`,
+                      icon: "success",
+                      confirmButtonText: "Dismiss",
+                    });
+                  });
+                  getComments();
                 }}
               />
             </div>

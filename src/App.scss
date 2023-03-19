@@ -167,6 +167,15 @@ h1 em {
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
+.buttonSelected {
+  background-color: $theme-red;
+  color: white;
+  border: 2px solid $theme-red;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: default;
+}
 
 .button1:hover {
   background-color: $theme-red;
