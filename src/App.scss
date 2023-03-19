@@ -198,14 +198,16 @@ h1 em {
   width: fit-content;
 }
 .view-more {
+  color: white;
   text-decoration: none;
   font-size: large;
   border-style: solid;
   padding: 2px 8px;
   border-width: 1px;
   border-radius: 5px;
-  :hover {
-    color: $title !important;
+  :hover,
+  :active {
+    color: $theme-red;
   }
 }
 .logout {
@@ -230,4 +232,37 @@ h1 em {
   .comment-title {
     color: $title-text;
   }
+}
+
+.movie-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.movie {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.movie img {
+  width: 100px;
+  height: 70px;
+  margin-right: 20px;
+  object-fit: scale-down;
+}
+
+.movie-details {
+  flex: 1;
+}
+
+.movie-title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.movie-rating {
+  font-size: 18px;
+  margin: 0;
 }

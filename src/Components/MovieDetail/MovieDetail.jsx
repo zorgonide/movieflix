@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Rings } from "react-loader-spinner";
 import { useParams, useLocation } from "react-router-dom";
 import { postBackend } from "../../Utilities/apiCalls";
-import SingleCard from "../CardsRow/SingleCard";
+import SingleCard from "../Render/SingleCard";
 import Error from "../ErrorPage/ErrorPage";
 import { CommentSection } from "react-comments-section";
 import "react-comments-section/dist/index.css";

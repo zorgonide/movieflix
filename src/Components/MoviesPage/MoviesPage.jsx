@@ -5,7 +5,7 @@ import { UncontrolledCarousel } from "reactstrap";
 import { fget } from "../../Utilities/apiCalls";
 import Error from "../ErrorPage/ErrorPage";
 import "./MoviesPage.css";
-import CardsRow from "../CardsRow/CardsRow";
+import CardsRow from "../Render/CardsRow";
 import { useUser } from "../../Shared/js/user-context";
 
 function MoviesPage(props) {

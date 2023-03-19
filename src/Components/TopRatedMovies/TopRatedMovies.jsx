@@ -3,7 +3,7 @@ import { Rings } from "react-loader-spinner";
 import { fget } from "../../Utilities/apiCalls";
 import Error from "../ErrorPage/ErrorPage";
 import "./TopRatedMovies.css";
-import CardsRow from "../CardsRow/CardsRow";
+import CardsRow from "../Render/CardsRow";
 import Pagination from "../Pagination/Pagination";
 
 function TopRatedMovies() {

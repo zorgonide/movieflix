@@ -7,7 +7,7 @@ import Profile from "../../Shared/images/profile.svg";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { patchBackend, postBackend } from "../../Utilities/apiCalls";
 import Swal from "sweetalert2";
-import MoviesWatched from "../CardsRow/MoviesWatched";
+import MoviesWatched from "../Render/MoviesWatched";
 function ProfilePage() {
   const navigate = useNavigate();
   const [error, setError] = useState(null);

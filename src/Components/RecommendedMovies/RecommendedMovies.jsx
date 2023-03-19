@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { fget } from "../../Utilities/apiCalls";
 import Error from "../ErrorPage/ErrorPage";
 import "./RecommendedMovies.css";
-import CardsRow from "../CardsRow/CardsRow";
+import CardsRow from "../Render/CardsRow";
 import Pagination from "../Pagination/Pagination";
 import { useUser } from "../../Shared/js/user-context";
 
