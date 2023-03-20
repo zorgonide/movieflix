@@ -49,7 +49,7 @@ function WatchList() {
     );
   } else
     return (
-      <div className="container">
+      <div className="container centered1">
         <div className="row py-4 justify-content-center">
           <div className="col-12 col-md-5">
             <MoviesWatched movies={moviesWatched}></MoviesWatched>

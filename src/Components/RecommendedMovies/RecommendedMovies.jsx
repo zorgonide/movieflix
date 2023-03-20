@@ -18,7 +18,9 @@ function RecommendedMovies() {
   const {
     state: { user },
   } = useUser();
-  const genres = user.genres || [];
+  const genres = Array.isArray(user.Genres)
+    ? user.Genres.join(",")
+    : user.Genres;
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -27,11 +29,7 @@ function RecommendedMovies() {
 
   const getMovies = (page = 1) => {
     fget({
-      url: `/3/discover/movie?api_key=${
-        process.env.REACT_APP_BASE_TOKEN
-      }&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate&with_genres=${genres.join(
-        ","
-      )}`,
+      url: `/3/discover/movie?api_key=${process.env.REACT_APP_BASE_TOKEN}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate&with_genres=${genres}`,
     })
       .then((res) => res.data)
       .then(
