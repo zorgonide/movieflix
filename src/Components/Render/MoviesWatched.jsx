@@ -22,7 +22,7 @@ function MoviesWatched({ movies }) {
                   <div class="movie-details">
                     <h2 class="movie-title">{movies[ele].Title}</h2>
                     <p class="movie-rating">
-                      Rating: {movies[ele].IMDB_Rating}
+                      IMDB Rating: {movies[ele].IMDB_Rating}
                     </p>
                   </div>
                 </div>

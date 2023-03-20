@@ -11,6 +11,7 @@ import ProfilePage from "../ProfilePage/ProfilePage";
 import RecommendedMovies from "../RecommendedMovies/RecommendedMovies";
 import RegisterComponent from "../RegisterComponent/RegisterComponent";
 import TopRatedMovies from "../TopRatedMovies/TopRatedMovies";
+import WatchList from "../WatchList/WatchList";
 
 export const GenreContext = React.createContext();
 
@@ -41,10 +42,10 @@ function MainComponent(props) {
               </GenreContext.Provider>
             }
           />
-
           <Route path="/movie/:movieId" element={<MovieDetail />} />
           <Route exact path="/top-rated" element={<TopRatedMovies />} />
           <Route exact path="/profile" element={<ProfilePage />} />
+          <Route exact path="/watchlist" element={<WatchList />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

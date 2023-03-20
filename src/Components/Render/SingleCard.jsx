@@ -13,7 +13,7 @@ function SingleCard({ movie }) {
         >
           <img
             src={"https://image.tmdb.org/t/p/original" + movie.Poster}
-            className="card-img-top "
+            className="card-img-top"
             alt={movie.Title}
           />
           <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary  ">

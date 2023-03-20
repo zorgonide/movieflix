@@ -53,6 +53,11 @@ function Header() {
               Profile
             </a>
           </li>
+          <li className="nav-item">
+            <a className="nav-link" onClick={() => navigate("/watchlist")}>
+              Watchlist
+            </a>
+          </li>
         </ul>
       </div>
       <div className="col logout">

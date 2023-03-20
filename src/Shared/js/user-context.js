@@ -16,9 +16,9 @@ function userReducer(state, action) {
     }
     case "genres": {
       return {
-        user: { ...state.user, genres: action.Genres },
+        user: { ...state.user, Genres: action.Genres },
         loggedIn: true,
-        genres: action.Genres,
+        Genres: action.Genres,
       };
     }
     default: {

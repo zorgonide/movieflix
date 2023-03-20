@@ -17,8 +17,10 @@ function MoviesPage(props) {
   const [upcoming, setUpcoming] = useState([]);
   const [topRated, setTopRated] = useState([]);
   const [recommended, setRecommended] = useState([]);
-  // const [userState, setUser] = useState(user);
-  const genres = user.Genres || [];
+  const genres = Array.isArray(user.Genres)
+    ? user.Genres.join(",")
+    : user.Genres;
+
   let navigate = useNavigate();
 
   const formatFunctionUpcoming = (movies) => {
@@ -26,7 +28,7 @@ function MoviesPage(props) {
       return {
         key: ele.id,
         src: "https://image.tmdb.org/t/p/original" + ele.backdrop_path,
-        caption: ele.original_title,
+        caption: ele.title,
       };
     });
   };

@@ -9,10 +9,8 @@ import { patchBackend, postBackend } from "../../Utilities/apiCalls";
 import Swal from "sweetalert2";
 import MoviesWatched from "../Render/MoviesWatched";
 function ProfilePage() {
-  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isWalletLoaded, setIsWalletLoaded] = useState(false);
   const [profile, setProfile] = useState({});
   const [moviesWatched, setMoviesWatched] = useState([]);
 
@@ -76,9 +74,9 @@ function ProfilePage() {
   } else
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-12 col-sm-5">
-            <div className="card my-2">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-5">
+            <div className="card my-4">
               <div className="card-body">
                 <p className="card-title display-6 gray text-center">Profile</p>
                 <hr />
@@ -192,9 +190,6 @@ function ProfilePage() {
                 </Formik>
               </div>
             </div>
-          </div>
-          <div className="col-12 col-sm">
-            <MoviesWatched movies={moviesWatched} />
           </div>
         </div>
       </div>

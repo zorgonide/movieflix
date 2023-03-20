@@ -8,6 +8,7 @@ import { CommentSection } from "react-comments-section";
 import "react-comments-section/dist/index.css";
 import { useUser } from "../../Shared/js/user-context";
 import Swal from "sweetalert2";
+import StarRating from "../Render/Stars";
 
 function MovieDetail() {
   let { movieId } = useParams();
@@ -19,6 +20,10 @@ function MovieDetail() {
   const [movie, setMovie] = useState(location.state.movie);
   const [comments, setComments] = useState(null);
   const [backendMovie, setBackendMovie] = useState(null);
+  const [userRating, setUserRating] = useState(3);
+  const handleRatingChange = (rating) => {
+    setUserRating(rating);
+  };
   const {
     state: { user },
   } = useUser();
@@ -37,10 +42,9 @@ function MovieDetail() {
       url: "movie/movieGet",
       data: {
         Movie_ID: movie.id,
-        Title: movie.original_title,
+        Title: movie.title,
         Description: movie.overview,
-        // IMDB_Rating: movie.vote_average,
-        IMDB_Rating: 5,
+        IMDB_Rating: movie.vote_average,
         Poster: movie.poster_path,
       },
     })
@@ -48,10 +52,9 @@ function MovieDetail() {
       .then(
         (result) => {
           setBackendMovie(result);
-          // setIsLoaded(true);
+          // setUserRating(Math.floor(movie.vote_average / 2));
         },
         (error) => {
-          // setIsLoaded(true);
           setError(error);
         }
       );
@@ -87,6 +90,18 @@ function MovieDetail() {
         }
       );
   };
+  const getMovieRating = () => {
+    return postBackend({
+      url: "movie/movieSearch",
+      data: {
+        Movie_ID: movieId,
+      },
+    })
+      .then((res) => res.data)
+      .then((res) => {
+        setUserRating(Math.floor(res[0].Average_Rating));
+      });
+  };
   const isMovieWatchedFunction = () => {
     return postBackend({
       url: "watchedList/watchedListSearch",
@@ -102,11 +117,13 @@ function MovieDetail() {
       });
   };
   useEffect(() => {
-    Promise.all([getMovie(), getComments(), isMovieWatchedFunction()]).then(
-      (res, rej) => {
+    Promise.all([getMovie(), getComments(), isMovieWatchedFunction()])
+      .then(() => {
+        getMovieRating();
+      })
+      .then(() => {
         setIsLoaded(true);
-      }
-    );
+      });
   }, [movie]);
   if (error) {
     return <Error error={error.status_message} />;
@@ -126,9 +143,9 @@ function MovieDetail() {
     );
   } else
     return (
-      <div className="container centered1">
-        <div className="row my-4">
-          <div className="col-2">
+      <div className="container py-4">
+        <div className="row mt-4 py-4 d-flex justify-content-around">
+          <div className="col-12 col-sm-2">
             <SingleCard movie={backendMovie}></SingleCard>
             <div className="d-grid gap-2 my-3">
               {!isMovieWatched ? (
@@ -146,11 +163,31 @@ function MovieDetail() {
               )}
             </div>
           </div>
-          <div className="col-3"></div>
-          <div className="col">
+          <div className="col-12 col-sm-8">
             <div className="heading">
               <div className="ten">
                 <h1>{backendMovie.Title}</h1>
+              </div>
+            </div>
+            <div className="my-4">
+              <div className="row">
+                <div className="col">
+                  <div className="user-rating">
+                    <h4>User Rating</h4>
+                  </div>
+                  <StarRating
+                    User_ID={user.User_ID}
+                    Movie_ID={movieId}
+                    userRating={userRating}
+                    onChange={handleRatingChange}
+                  />
+                </div>
+                <div className="col">
+                  <div className="user-rating">
+                    <h4>IMDB Rating</h4>
+                    <h4> {movie.vote_average}</h4>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="description my-4">{backendMovie.Description}</div>
@@ -175,7 +212,7 @@ function MovieDetail() {
                   });
                 }}
                 currentData={(data) => {
-                  console.log("current data", data);
+                  // console.log("current data", data);
                 }}
                 onDeleteAction={(data) => {
                   postBackend({
