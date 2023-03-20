@@ -3,11 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../Shared/js/user-context";
 import Error from "../ErrorPage/ErrorPage";
 import { Rings } from "react-loader-spinner";
-import Profile from "../../Shared/images/profile.svg";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { patchBackend, postBackend } from "../../Utilities/apiCalls";
 import Swal from "sweetalert2";
-import MoviesWatched from "../Render/MoviesWatched";
 function ProfilePage() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,7 +27,7 @@ function ProfilePage() {
         setMoviesWatched(res);
       });
   };
-  const fetchUser = () => {
+  const fetchUser = async () => {
     return postBackend({
       url: "userprofile/get",
       data: {
@@ -73,7 +71,7 @@ function ProfilePage() {
     );
   } else
     return (
-      <div className="container">
+      <div className="container centered">
         <div className="row justify-content-center">
           <div className="col-12 col-md-5">
             <div className="card my-4">
@@ -81,7 +79,14 @@ function ProfilePage() {
                 <p className="card-title display-6 gray text-center">Profile</p>
                 <hr />
                 <div className="img mx-auto my-3">
-                  <img src={Profile} className="" alt="pic" />
+                  <img
+                    defer
+                    src={`https://ui-avatars.com/api/name=${
+                      profile.First_Name + "+" + profile.Last_Name
+                    }&color=e31c5f`}
+                    className="profilePic"
+                    alt="pic"
+                  />
                 </div>
                 <Formik
                   initialValues={{
@@ -105,14 +110,13 @@ function ProfilePage() {
                       url: "userprofile/put",
                       data: data,
                     }).then(() => {
-                      fetchUser.then(() => {
-                        Swal.fire({
-                          confirmButtonColor: "#e31c5f",
-                          title: "Success",
-                          text: `Saved Changes`,
-                          icon: "success",
-                          confirmButtonText: "Dismiss",
-                        });
+                      fetchUser();
+                      Swal.fire({
+                        confirmButtonColor: "#e31c5f",
+                        title: "Success",
+                        text: `Saved Changes`,
+                        icon: "success",
+                        confirmButtonText: "Dismiss",
                       });
                     });
                   }}
