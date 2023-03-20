@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../Shared/js/user-context";
 import Error from "../ErrorPage/ErrorPage";
 import { Rings } from "react-loader-spinner";
@@ -188,6 +188,9 @@ function ProfilePage() {
                     </Form>
                   )}
                 </Formik>
+              </div>
+              <div className="card-footer text-muted text-center link">
+                Change recommendations? <Link to="/genres">Edit Genres</Link>
               </div>
             </div>
           </div>
