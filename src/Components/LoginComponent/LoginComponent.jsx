@@ -47,7 +47,11 @@ function LoginComponent() {
                       if (res.success) {
                         setLoading(false);
                         dispatch({ type: "login", user: res });
-                        res.Genres.length ? navigate("/") : navigate("/genres");
+                        if (res.isStaff) navigate("/manage");
+                        else
+                          res.Genres.length
+                            ? navigate("/")
+                            : navigate("/genres");
                       } else throw new Error();
                     })
                     .catch((err) => {

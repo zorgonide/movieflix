@@ -272,3 +272,31 @@ h1 em {
 .profilePic {
   border-radius: 50%;
 }
+.list-card {
+  text-align: left;
+  border: 0.5px solid $theme-red;
+  text-decoration: none;
+  margin-bottom: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  // font-size: 1.5vw;
+  :hover {
+    .name {
+      color: $theme-red;
+    }
+  }
+}
+.list-card1 {
+  text-align: left;
+  border: 0.5px solid $theme-red;
+  text-decoration: none;
+  margin-bottom: 5px;
+  // cursor: pointer;
+  font-weight: 500;
+  // font-size: 1.5vw;
+}
+.deleteButton {
+  color: red;
+  padding: 5px;
+  cursor: pointer;
+}

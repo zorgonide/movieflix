@@ -4,6 +4,7 @@ import ProtectedRoute from "../../Shared/js/ProtectedRoute";
 import GenrePage from "../GenrePage/GenrePage";
 import Header from "../HeaderComponent/HeaderComponent";
 import LoginComponent from "../LoginComponent/LoginComponent";
+import ManageUsers from "../ManageUsers/ManageUsers";
 import MovieDetail from "../MovieDetail/MovieDetail";
 import MoviesPage from "../MoviesPage/MoviesPage";
 import NotFound from "../NotFound/NotFound";
@@ -46,6 +47,7 @@ function MainComponent(props) {
           <Route exact path="/top-rated" element={<TopRatedMovies />} />
           <Route exact path="/profile" element={<ProfilePage />} />
           <Route exact path="/watchlist" element={<WatchList />} />
+          <Route exact path="/manage" element={<ManageUsers />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -7,6 +7,7 @@ import Error from "../ErrorPage/ErrorPage";
 import "./MoviesPage.css";
 import CardsRow from "../Render/CardsRow";
 import { useUser } from "../../Shared/js/user-context";
+import ManageUsers from "../ManageUsers/ManageUsers";
 
 function MoviesPage(props) {
   const {

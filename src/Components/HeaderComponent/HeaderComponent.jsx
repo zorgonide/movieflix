@@ -28,38 +28,40 @@ function Header() {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div
-        className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
-        id="navbarNav"
-      >
-        <ul className="navbar-nav">
-          <li className="nav-item active">
-            <a className="nav-link" onClick={() => navigate("/")}>
-              Home
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" onClick={() => navigate("/top-rated")}>
-              Top Rated
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" onClick={() => navigate("/recommended")}>
-              Recommended
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" onClick={() => navigate("/profile")}>
-              Profile
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" onClick={() => navigate("/watchlist")}>
-              Watchlist
-            </a>
-          </li>
-        </ul>
-      </div>
+      {user.isStaff ?? (
+        <div
+          className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
+          id="navbarNav"
+        >
+          <ul className="navbar-nav">
+            <li className="nav-item active">
+              <a className="nav-link" onClick={() => navigate("/")}>
+                Home
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" onClick={() => navigate("/top-rated")}>
+                Top Rated
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" onClick={() => navigate("/recommended")}>
+                Recommended
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" onClick={() => navigate("/profile")}>
+                Profile
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" onClick={() => navigate("/watchlist")}>
+                Watchlist
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
       <div className="col logout">
         <a className="nav-link" onClick={() => dispatch({ type: "logout" })}>
           <i className="fa fa-sign-out"></i> Log Out
