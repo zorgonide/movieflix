@@ -28,7 +28,7 @@ function Header() {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      {user.isStaff ?? (
+      {!user.isStaff ? (
         <div
           className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
           id="navbarNav"
@@ -61,7 +61,7 @@ function Header() {
             </li>
           </ul>
         </div>
-      )}
+      ) : null}
       <div className="col logout">
         <a className="nav-link" onClick={() => dispatch({ type: "logout" })}>
           <i className="fa fa-sign-out"></i> Log Out
