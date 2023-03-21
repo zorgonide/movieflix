@@ -7,8 +7,10 @@ import Swal from "sweetalert2";
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string().label("password").required("Required"),
-  // .min(8, "Seems a bit short..."),
+  password: Yup.string()
+    .label("password")
+    .required("Required")
+    .min(8, "Seems a bit short..."),
   // .matches(
   //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
   //   "At least 1 letter, 1 number and 1 special character"
@@ -170,7 +172,7 @@ function RegisterComponent() {
                               ? "form-control is-invalid"
                               : "form-control"
                           }
-                          id="confirmpassword"
+                          id="password"
                           type=""
                           name="confirmpassword"
                           placeholder="confirmpassword"

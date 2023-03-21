@@ -90,6 +90,7 @@ function LoginComponent() {
                         id="password"
                         type="password"
                         name="password"
+                        autoComplete="current-password"
                         placeholder="password"
                       />
                       <label htmlFor="password">Password</label>
