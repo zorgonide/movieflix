@@ -1,6 +1,7 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 function MoviesWatched({ movies }) {
+  let navigate = useNavigate();
   let moviesArray = Object.keys(movies);
   moviesArray.pop();
   return (
@@ -12,8 +13,8 @@ function MoviesWatched({ movies }) {
           {moviesArray ? (
             moviesArray.map((ele) => {
               return (
-                <li>
-                  <div class="movie">
+                <li key={ele}>
+                  <div class="movie" onClick={navigate(`movie/${ele}`)}>
                     <img
                       src={
                         "https://image.tmdb.org/t/p/original" +
