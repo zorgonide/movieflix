@@ -6,7 +6,7 @@ function MoviesWatched({ movies }) {
   return (
     <div className="card my-2">
       <div className="card-body">
-        <p className="card-title display-6 gray text-center">Movies Watched</p>
+        <p className="card-title display-6 gray text-center">Watchlist</p>
         <hr />
         <ul className="movie-list">
           {moviesArray.map((ele) => {

@@ -158,7 +158,7 @@ function MovieDetail() {
                 </button>
               ) : (
                 <button type="button" className="button buttonSelected mb-3">
-                  <i className="fa fa-check"></i> Watched
+                  <i className="fa fa-check"></i> Added
                 </button>
               )}
             </div>
