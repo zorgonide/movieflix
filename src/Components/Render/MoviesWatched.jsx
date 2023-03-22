@@ -9,26 +9,31 @@ function MoviesWatched({ movies }) {
         <p className="card-title display-6 gray text-center">Watchlist</p>
         <hr />
         <ul className="movie-list">
-          {moviesArray.map((ele) => {
-            return (
-              <li>
-                <div class="movie">
-                  <img
-                    src={
-                      "https://image.tmdb.org/t/p/original" + movies[ele].Poster
-                    }
-                    alt="Movie"
-                  />
-                  <div class="movie-details">
-                    <h2 class="movie-title">{movies[ele].Title}</h2>
-                    <p class="movie-rating">
-                      IMDB Rating: {movies[ele].IMDB_Rating}
-                    </p>
+          {moviesArray ? (
+            moviesArray.map((ele) => {
+              return (
+                <li>
+                  <div class="movie">
+                    <img
+                      src={
+                        "https://image.tmdb.org/t/p/original" +
+                        movies[ele].Poster
+                      }
+                      alt="Movie"
+                    />
+                    <div class="movie-details">
+                      <h2 class="movie-title">{movies[ele].Title}</h2>
+                      <p class="movie-rating">
+                        IMDB Rating: {movies[ele].IMDB_Rating}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </li>
-            );
-          })}
+                </li>
+              );
+            })
+          ) : (
+            <p>No movies added to watchlist</p>
+          )}
         </ul>
       </div>
     </div>
