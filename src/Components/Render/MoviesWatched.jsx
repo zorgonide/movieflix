@@ -14,7 +14,7 @@ function MoviesWatched({ movies }) {
             moviesArray.map((ele) => {
               return (
                 <li key={ele}>
-                  <div class="movie" onClick={navigate(`movie/${ele}`)}>
+                  <div class="movie" onClick={() => navigate(`movie/${ele}`)}>
                     <img
                       src={
                         "https://image.tmdb.org/t/p/original" +
