@@ -1,6 +1,3 @@
-.card-body {
-    max-width: 50vh;
-}
 .genreList {
     display: block;
 }
@@ -12,4 +9,4 @@
 }
 .listOfGenres {
     display: block;
-}
+} 
