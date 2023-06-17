@@ -32,12 +32,10 @@ $title: #d27685;
   box-shadow: 0 5px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 .clickable {
-  .card {
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    .card:hover {
-      transform: scale(1.05);
-    }
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  .card:hover {
+    transform: scale(1.05);
   }
 }
 .display-6 {
