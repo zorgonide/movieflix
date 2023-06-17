@@ -89,7 +89,7 @@ function GenrePage(props) {
     );
   };
   const goToMoviesPage = () => {
-    if (!highlightedButtons.length) {
+    if (highlightedButtons.length) {
       patchBackend({
         url: "userprofile/put",
         data: {
