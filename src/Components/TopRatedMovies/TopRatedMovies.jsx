@@ -23,7 +23,7 @@ function TopRatedMovies() {
       .then((res) => res.data)
       .then(
         (result) => {
-          setTopRated(result.results);
+          setTopRated(result.results.slice(0, -2));
           setTotalPages(result.total_pages);
           setIsLoaded(true);
         },

@@ -11,7 +11,7 @@ const CardsRow = ({ movies }) => {
       {movies.map((ele) => {
         return (
           <div
-            className="col"
+            className="col clickable"
             key={ele.id}
             onClick={() =>
               navigate(`/movie/${ele.id}`, { state: { movie: ele } })
