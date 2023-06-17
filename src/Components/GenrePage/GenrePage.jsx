@@ -6,6 +6,7 @@ import { fget, patchBackend } from "../../Utilities/apiCalls";
 import Error from "../ErrorPage/ErrorPage";
 import Genre from "../../Shared/images/Register.svg";
 import "./GenrePage.css";
+import Swal from "sweetalert2";
 
 function GenrePage(props) {
   const [error, setError] = useState(null);
@@ -88,17 +89,26 @@ function GenrePage(props) {
     );
   };
   const goToMoviesPage = () => {
-    patchBackend({
-      url: "userprofile/put",
-      data: {
-        User_ID: user.User_ID,
-        Genres: highlightedButtons.join(","),
-      },
-    }).then(() => {
-      dispatch({ type: "genres", Genres: highlightedButtons });
-      // props.setGenres(highlightedButtons);
-      navigate("/");
-    });
+    if (!highlightedButtons.length) {
+      patchBackend({
+        url: "userprofile/put",
+        data: {
+          User_ID: user.User_ID,
+          Genres: highlightedButtons.join(","),
+        },
+      }).then(() => {
+        dispatch({ type: "genres", Genres: highlightedButtons });
+        // props.setGenres(highlightedButtons);
+        navigate("/");
+      });
+    } else {
+      Swal.fire({
+        title: "Error",
+        text: `Select a genre to continue`,
+        icon: "error",
+        confirmButtonText: "Dismiss",
+      });
+    }
   };
   if (error) {
     return <Error error={error.status_message} />;
