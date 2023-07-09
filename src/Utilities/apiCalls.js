@@ -1,7 +1,7 @@
 import axios from "axios";
-const backend = "http://127.0.0.1:3000/";
+// const backend = "http://127.0.0.1:3000/";
 // const backend = "https://guanxinyumovieflix.me/";
-// const backend = "https://movieflix-wpa8.onrender.com/";
+const backend = "https://movieflix-wpa8.onrender.com/";
 
 let cache = {};
 export const fget = async ({ url }) => {
