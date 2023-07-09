@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useUser } from "../../Shared/js/user-context";
 import Error from "../ErrorPage/ErrorPage";
 import { Rings } from "react-loader-spinner";
 import { getBackend, postBackend } from "../../Utilities/apiCalls";
