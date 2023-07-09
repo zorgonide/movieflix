@@ -64,7 +64,8 @@ function Header() {
       ) : null}
       <div className="col logout">
         <a className="nav-link" onClick={() => dispatch({ type: "logout" })}>
-          <i className="fa fa-sign-out"></i> Log Out
+          <i className="fa fa-sign-out"></i>{" "}
+          <span className="d-none d-md-inline">Log Out</span>
         </a>
       </div>
     </nav>

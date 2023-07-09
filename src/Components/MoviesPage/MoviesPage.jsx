@@ -98,7 +98,7 @@ function MoviesPage(props) {
     );
   } else
     return (
-      <div className="container">
+      <div className="container-home">
         <div className="row pt-2 justify-content-center">
           <div className="ten">
             <h1>Upcoming Movies</h1>
@@ -120,7 +120,7 @@ function MoviesPage(props) {
               <h1>Recommended Movies</h1>
             </div>
             <Link to={"/recommended"} className="view-more">
-              View more
+              More
             </Link>
           </div>
           <div className="col-12">
@@ -134,7 +134,7 @@ function MoviesPage(props) {
               <h1>Top Rated Movies</h1>
             </div>
             <Link to={"/top-rated"} className="view-more">
-              View more
+              More
             </Link>
           </div>
           <div className="col-12">

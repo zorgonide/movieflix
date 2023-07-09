@@ -70,7 +70,7 @@ function RecommendedMovies() {
     );
   } else
     return (
-      <div className="container">
+      <div className="container-home">
         <div className="row pt-2 justify-content-center">
           <div className="heading">
             <div className="ten">

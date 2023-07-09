@@ -9,7 +9,7 @@ const Pagination = ({ paginate, totalPages, currentPage }) => {
   return (
     <div className="pagination">
       <div className="heading">
-        <p className="pages">{`${currentPage} out of ${totalPages}`}</p>
+        <p className="pages">{`${currentPage}/${totalPages}`}</p>
       </div>
       <button
         onClick={() => paginate(currentPage - 1)}

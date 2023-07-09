@@ -312,3 +312,14 @@ h1 em {
   padding: 5px;
   cursor: pointer;
 }
+.container-home {
+  display: flex;
+  width: 100%;
+  padding: 0 1rem;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+}
