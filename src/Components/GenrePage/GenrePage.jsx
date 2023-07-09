@@ -99,10 +99,13 @@ function GenrePage(props) {
         data: {
           genres: highlightedButtons.join(","),
         },
-      }).then(() => {
-        dispatch({ type: "genres", Genres: highlightedButtons });
-        navigate("/");
-      });
+      })
+        .then((res) => res.data)
+        .then((res) => {
+          dispatch({ type: "genres", Genres: res.user.genres });
+          dispatch({ type: "login", user: res.user });
+          navigate("/");
+        });
     } else {
       Swal.fire({
         title: "Error",
