@@ -43,9 +43,13 @@ function GenrePage(props) {
     newSet[index].isSelected = !newSet[index].isSelected;
     setGenres(() => [...newSet]);
     if (highlightedButtons.indexOf(ele.id) === -1)
-      highlightedButtons.push(ele.id);
+      setHighlightedButtons(() => [...highlightedButtons, ele.id]);
+    // highlightedButtons.push(ele.id);
     else {
-      highlightedButtons.splice(highlightedButtons.indexOf(ele.id), 1);
+      // highlightedButtons.splice(highlightedButtons.indexOf(ele.id), 1);
+      setHighlightedButtons(() => [
+        ...highlightedButtons.splice(highlightedButtons.indexOf(ele.id), 1),
+      ]);
     }
   };
   const GenreList = () => {
@@ -91,14 +95,12 @@ function GenrePage(props) {
   const goToMoviesPage = () => {
     if (highlightedButtons.length) {
       patchBackend({
-        url: "userprofile/put",
+        url: "user/",
         data: {
-          User_ID: user.User_ID,
-          Genres: highlightedButtons.join(","),
+          genres: highlightedButtons.join(","),
         },
       }).then(() => {
         dispatch({ type: "genres", Genres: highlightedButtons });
-        // props.setGenres(highlightedButtons);
         navigate("/");
       });
     } else {

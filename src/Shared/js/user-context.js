@@ -8,7 +8,7 @@ function userReducer(state, action) {
       return {
         user: action.user,
         loggedIn: true,
-        genres: action.user.Genres,
+        genres: action.user.genres,
       };
     }
     case "logout": {
@@ -16,9 +16,9 @@ function userReducer(state, action) {
     }
     case "genres": {
       return {
-        user: { ...state.user, Genres: action.Genres },
+        user: { ...state.user, Genres: action.genres },
         loggedIn: true,
-        Genres: action.Genres,
+        Genres: action.genres,
       };
     }
     default: {

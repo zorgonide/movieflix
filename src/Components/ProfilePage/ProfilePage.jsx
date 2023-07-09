@@ -82,7 +82,7 @@ function ProfilePage() {
                   <img
                     defer
                     src={`https://ui-avatars.com/api/name=${
-                      profile.First_Name + "+" + profile.Last_Name
+                      profile.firstName + "+" + profile.lastName
                     }&color=e31c5f`}
                     className="profilePic"
                     alt="pic"
@@ -90,18 +90,18 @@ function ProfilePage() {
                 </div>
                 <Formik
                   initialValues={{
-                    email: profile.Email,
-                    firstname: profile.First_Name,
-                    lastname: profile.Last_Name,
+                    email: profile.email,
+                    firstname: profile.firstName,
+                    lastname: profile.lastName,
                     userId: profile.User_ID,
                     password: "",
                   }}
                   onSubmit={(values) => {
                     let data = {
-                      User_ID: user.User_ID,
-                      First_Name: values.firstname,
-                      Last_Name: values.lastname,
-                      Email: values.email,
+                      firstName: values.firstname,
+                      lastName: values.lastname,
+                      email: values.email,
+                      password: values.password,
                     };
                     if (values.password) {
                       data["Password"] = values.password;

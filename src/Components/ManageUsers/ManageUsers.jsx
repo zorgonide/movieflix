@@ -99,10 +99,10 @@ function ManageUsers() {
                 </p>
               </div>
               <div className="col-3 text-center">
-                <p className="name">{element.First_Name}</p>
+                <p className="name">{element.firstName}</p>
               </div>
               <div className="col text-center">
-                <p className="">{element.Last_Name}</p>
+                <p className="">{element.lastName}</p>
               </div>
               <div className="col text-center">
                 <p className="">{element.Email}</p>
@@ -128,7 +128,7 @@ function ManageUsers() {
   };
   let filteredUsers = totalItems
     ? totalItems.filter((user) => {
-        let fullName = user.First_Name + user.Last_Name;
+        let fullName = user.firstName + user.lastName;
         return fullName.toLowerCase().indexOf(search.toLowerCase()) !== -1;
       })
     : [];

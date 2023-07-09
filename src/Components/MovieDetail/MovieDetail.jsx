@@ -74,10 +74,10 @@ function MovieDetail() {
             return {
               userId: ele.User_ID,
               comId: ele.Comment_ID,
-              fullName: ele.First_Name + " " + ele.Last_Name,
+              fullName: ele.firstName + " " + ele.lastName,
               text: ele.Comment,
               avatarUrl: `https://ui-avatars.com/api/name=${
-                ele.First_Name + "+" + ele.Last_Name
+                ele.firstName + "+" + ele.lastName
               }&background=random`,
               replies: [],
             };
@@ -196,9 +196,9 @@ function MovieDetail() {
                 currentUser={{
                   currentUserId: user.User_ID,
                   currentUserImg: `https://ui-avatars.com/api/name=${
-                    user.First_Name + "+" + user.Last_Name
+                    user.firstName + "+" + user.lastName
                   }&background=random`,
-                  currentUserFullName: user.First_Name + " " + user.Last_Name, // names
+                  currentUserFullName: user.firstName + " " + user.lastName, // names
                 }}
                 commentData={comments}
                 onSubmitAction={(data) => {

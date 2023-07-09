@@ -36,23 +36,26 @@ function LoginComponent() {
                 validationSchema={LoginSchema}
                 onSubmit={(values) => {
                   postBackend({
-                    url: `userprofile/login`,
+                    url: `signin`,
                     data: {
-                      Email: values.email,
-                      Password: values.password,
+                      email: values.email,
+                      password: values.password,
                     },
                   })
                     .then((res) => res.data)
                     .then((res) => {
-                      if (res.success) {
-                        setLoading(false);
-                        dispatch({ type: "login", user: res });
-                        if (res.isStaff) navigate("/manage");
-                        else
-                          res.Genres.length
-                            ? navigate("/")
-                            : navigate("/genres");
-                      } else throw new Error();
+                      setLoading(false);
+                      dispatch({ type: "login", user: res.user });
+                      document.cookie = `authToken=${
+                        res.token
+                      }; expires=${new Date(
+                        Date.now() + 1000 * 60 * 60 * 24 * 7
+                      )};`;
+                      if (res.user.role === "admin") navigate("/manage");
+                      else
+                        res.user.genres.length
+                          ? navigate("/")
+                          : navigate("/genres");
                     })
                     .catch((err) => {
                       console.log(err);

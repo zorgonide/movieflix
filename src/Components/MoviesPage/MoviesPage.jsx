@@ -18,9 +18,9 @@ function MoviesPage(props) {
   const [upcoming, setUpcoming] = useState([]);
   const [topRated, setTopRated] = useState([]);
   const [recommended, setRecommended] = useState([]);
-  const genres = Array.isArray(user.Genres)
-    ? user.Genres.join(",")
-    : user.Genres;
+  const genres = Array.isArray(user.genres)
+    ? user.genres.join(",")
+    : user.genres;
 
   let navigate = useNavigate();
 
