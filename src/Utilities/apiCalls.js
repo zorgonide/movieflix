@@ -47,7 +47,11 @@ export const fdelete = async ({ url }) => {
 };
 export const getBackend = async ({ url }) => {
   try {
-    const res = await axios.get(backend + `${url}`, {});
+    const res = await axios.get(backend + `${url}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     return res;
   } catch (err) {
     return err;
@@ -56,7 +60,11 @@ export const getBackend = async ({ url }) => {
 
 export const patchBackend = async ({ url, data }) => {
   try {
-    const res = await axios.put(backend + `${url}`, data, {});
+    const res = await axios.put(backend + `${url}`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     return res;
   } catch (err) {
     return err;
@@ -65,7 +73,11 @@ export const patchBackend = async ({ url, data }) => {
 
 export const postBackend = async ({ url, data }) => {
   try {
-    let res = await axios.post(backend + `${url}`, data, {});
+    let res = await axios.post(backend + `${url}`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     return res;
   } catch (err) {
     return err;
@@ -74,7 +86,11 @@ export const postBackend = async ({ url, data }) => {
 
 export const deleteBackend = async ({ url }) => {
   try {
-    const res = await axios.delete(backend + `${url}`, {});
+    const res = await axios.delete(backend + `${url}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     return res;
   } catch (err) {
     return err;

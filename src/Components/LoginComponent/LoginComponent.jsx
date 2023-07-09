@@ -46,11 +46,7 @@ function LoginComponent() {
                     .then((res) => {
                       setLoading(false);
                       dispatch({ type: "login", user: res.user });
-                      document.cookie = `authToken=${
-                        res.token
-                      }; expires=${new Date(
-                        Date.now() + 1000 * 60 * 60 * 24 * 7
-                      )};`;
+                      localStorage.setItem("token", res.token);
                       if (res.user.role === "admin") navigate("/manage");
                       else
                         res.user.genres.length
