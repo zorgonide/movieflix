@@ -2,34 +2,30 @@ import React, { useEffect, useState } from "react";
 import { useUser } from "../../Shared/js/user-context";
 import Error from "../ErrorPage/ErrorPage";
 import { Rings } from "react-loader-spinner";
-import { postBackend } from "../../Utilities/apiCalls";
+import { getBackend, postBackend } from "../../Utilities/apiCalls";
 import MoviesWatched from "../Render/MoviesWatched";
 
 function WatchList() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [profile, setProfile] = useState({});
   const [moviesWatched, setMoviesWatched] = useState([]);
-
-  const {
-    state: { user },
-  } = useUser();
   const MoviesWatchedFunction = () => {
-    return postBackend({
-      url: "watchedList/watchedListSearch",
-      data: {
-        User_ID: user.User_ID,
-      },
+    return getBackend({
+      url: "api/watchlist",
     })
       .then((res) => res.data)
       .then((res) => {
-        setMoviesWatched(res);
+        setMoviesWatched(res.data.map((movie) => movie.movie));
       });
   };
   useEffect(() => {
-    Promise.all([MoviesWatchedFunction()]).then(() => {
-      setIsLoaded(true);
-    });
+    Promise.all([MoviesWatchedFunction()])
+      .then(() => {
+        setIsLoaded(true);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   }, []);
   if (error) {
     return <Error error={error.status_message} />;

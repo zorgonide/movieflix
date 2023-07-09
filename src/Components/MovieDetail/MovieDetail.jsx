@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Rings } from "react-loader-spinner";
 import { useParams, useLocation } from "react-router-dom";
-import { postBackend } from "../../Utilities/apiCalls";
+import {
+  deleteBackend,
+  getBackend,
+  patchBackend,
+  postBackend,
+} from "../../Utilities/apiCalls";
 import SingleCard from "../Render/SingleCard";
 import Error from "../ErrorPage/ErrorPage";
 import { CommentSection } from "react-comments-section";
@@ -20,7 +25,7 @@ function MovieDetail() {
   const [movie, setMovie] = useState(location.state.movie);
   const [comments, setComments] = useState(null);
   const [backendMovie, setBackendMovie] = useState(null);
-  const [userRating, setUserRating] = useState(3);
+  const [userRating, setUserRating] = useState(0);
   const handleRatingChange = (rating) => {
     setUserRating(rating);
   };
@@ -30,29 +35,19 @@ function MovieDetail() {
 
   const addToWatchlist = () => {
     postBackend({
-      url: "watchedList/watchedListAdd",
-      data: {
-        Movie_ID: movie.id,
-        User_ID: user.User_ID,
-      },
+      url: `api/watchlist/${movieId}`,
+      data: {},
     }).then(() => isMovieWatchedFunction());
   };
   const getMovie = () => {
     return postBackend({
-      url: "movie/movieGet",
-      data: {
-        Movie_ID: movie.id,
-        Title: movie.title,
-        Description: movie.overview,
-        IMDB_Rating: movie.vote_average,
-        Poster: movie.poster_path,
-      },
+      url: "api/movie/" + movieId,
+      data: movie,
     })
       .then((res) => res.data)
       .then(
         (result) => {
           setBackendMovie(result);
-          // setUserRating(Math.floor(movie.vote_average / 2));
         },
         (error) => {
           setError(error);
@@ -60,24 +55,21 @@ function MovieDetail() {
       );
   };
   const getComments = () => {
-    return postBackend({
-      url: "comment/commentGet",
-      data: {
-        Movie_ID: movieId,
-      },
+    return getBackend({
+      url: `api/comment/${movieId}`,
     })
       .then((res) => res.data)
       .then(
         (result) => {
           setIsCommentLoaded(true);
-          let newC = result.map((ele) => {
+          let newC = result.data.map((ele) => {
             return {
-              userId: ele.User_ID,
-              comId: ele.Comment_ID,
-              fullName: ele.firstName + " " + ele.lastName,
-              text: ele.Comment,
+              userId: ele.userId,
+              comId: ele.id,
+              fullName: ele.user.firstName + " " + ele.user.lastName,
+              text: ele.comment,
               avatarUrl: `https://ui-avatars.com/api/name=${
-                ele.firstName + "+" + ele.lastName
+                ele.user.firstName + "+" + ele.user.lastName
               }&background=random`,
               replies: [],
             };
@@ -91,29 +83,21 @@ function MovieDetail() {
       );
   };
   const getMovieRating = () => {
-    return postBackend({
-      url: "movie/movieSearch",
-      data: {
-        Movie_ID: movieId,
-      },
+    return getBackend({
+      url: `api/rating/${movieId}`,
     })
       .then((res) => res.data)
       .then((res) => {
-        setUserRating(Math.floor(res[0].Average_Rating));
+        setUserRating(+res.data);
       });
   };
   const isMovieWatchedFunction = () => {
     return postBackend({
-      url: "watchedList/watchedListSearch",
-      data: {
-        User_ID: user.User_ID,
-      },
+      url: `api/watchlist/check/${movieId}`,
     })
       .then((res) => res.data)
       .then((res) => {
-        if (Object.keys(res).includes(movieId)) {
-          setIsMovieWatched(true);
-        }
+        setIsMovieWatched(res.data);
       });
   };
   useEffect(() => {
@@ -166,7 +150,7 @@ function MovieDetail() {
           <div className="col-12 col-sm-8">
             <div className="heading">
               <div className="ten">
-                <h1>{backendMovie.Title}</h1>
+                <h1>{backendMovie.title}</h1>
               </div>
             </div>
             <div className="my-4">
@@ -176,7 +160,7 @@ function MovieDetail() {
                     <h4>User Rating</h4>
                   </div>
                   <StarRating
-                    User_ID={user.User_ID}
+                    User_ID={user.id}
                     Movie_ID={movieId}
                     userRating={userRating}
                     onChange={handleRatingChange}
@@ -190,11 +174,11 @@ function MovieDetail() {
                 </div>
               </div>
             </div>
-            <div className="description my-4">{backendMovie.Description}</div>
+            <div className="description my-4">{backendMovie.description}</div>
             <div className="comments">
               <CommentSection
                 currentUser={{
-                  currentUserId: user.User_ID,
+                  currentUserId: user.id,
                   currentUserImg: `https://ui-avatars.com/api/name=${
                     user.firstName + "+" + user.lastName
                   }&background=random`,
@@ -203,11 +187,10 @@ function MovieDetail() {
                 commentData={comments}
                 onSubmitAction={(data) => {
                   postBackend({
-                    url: "comment/commentAdd",
+                    url: "api/comment",
                     data: {
-                      User_ID: user.User_ID,
-                      Movie_ID: movieId,
-                      Comment: data.text,
+                      movieId: movieId,
+                      comment: data.text,
                     },
                   });
                 }}
@@ -215,11 +198,8 @@ function MovieDetail() {
                   // console.log("current data", data);
                 }}
                 onDeleteAction={(data) => {
-                  postBackend({
-                    url: "comment/commentDel",
-                    data: {
-                      Comment_ID: data.comIdToDelete,
-                    },
+                  deleteBackend({
+                    url: "api/comment/" + data.comIdToDelete,
                   }).then(() => {
                     Swal.fire({
                       confirmButtonColor: "#4fbfa8",
@@ -230,6 +210,15 @@ function MovieDetail() {
                     });
                   });
                   getComments();
+                }}
+                onEditAction={(data) => {
+                  patchBackend({
+                    url: "api/comment/",
+                    data: {
+                      id: data.comId,
+                      comment: data.text,
+                    },
+                  }).then(() => getComments());
                 }}
               />
             </div>

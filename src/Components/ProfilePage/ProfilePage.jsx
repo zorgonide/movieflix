@@ -4,39 +4,27 @@ import { useUser } from "../../Shared/js/user-context";
 import Error from "../ErrorPage/ErrorPage";
 import { Rings } from "react-loader-spinner";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { patchBackend, postBackend } from "../../Utilities/apiCalls";
+import {
+  getBackend,
+  patchBackend,
+  postBackend,
+} from "../../Utilities/apiCalls";
 import Swal from "sweetalert2";
 function ProfilePage() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [profile, setProfile] = useState({});
-  const [moviesWatched, setMoviesWatched] = useState([]);
 
   const {
     state: { user },
   } = useUser();
-  const MoviesWatchedFunction = () => {
-    return postBackend({
-      url: "watchedList/watchedListSearch",
-      data: {
-        User_ID: user.User_ID,
-      },
-    })
-      .then((res) => res.data)
-      .then((res) => {
-        setMoviesWatched(res);
-      });
-  };
   const fetchUser = async () => {
-    return postBackend({
-      url: "userprofile/get",
-      data: {
-        User_ID: user.User_ID,
-      },
+    return getBackend({
+      url: "user/",
     })
       .then((res) => res.data)
       .then((res) => {
-        setProfile(res[0]);
+        setProfile(res);
       })
       .catch(() => {
         Swal.fire({
@@ -49,7 +37,7 @@ function ProfilePage() {
   };
 
   useEffect(() => {
-    Promise.all([fetchUser(), MoviesWatchedFunction()]).then(() => {
+    fetchUser().then(() => {
       setIsLoaded(true);
     });
   }, []);
@@ -93,7 +81,7 @@ function ProfilePage() {
                     email: profile.email,
                     firstname: profile.firstName,
                     lastname: profile.lastName,
-                    userId: profile.User_ID,
+                    userId: profile.id,
                     password: "",
                   }}
                   onSubmit={(values) => {
@@ -107,7 +95,7 @@ function ProfilePage() {
                       data["Password"] = values.password;
                     }
                     patchBackend({
-                      url: "userprofile/put",
+                      url: "user/",
                       data: data,
                     }).then(() => {
                       fetchUser();

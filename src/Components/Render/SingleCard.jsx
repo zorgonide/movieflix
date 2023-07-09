@@ -8,16 +8,16 @@ function SingleCard({ movie }) {
       <div className="card">
         <HideUntilLoaded
           animationIn="popIn"
-          imageToLoad={"https://image.tmdb.org/t/p/original" + movie.Poster}
+          imageToLoad={"https://image.tmdb.org/t/p/original" + movie.poster}
           Spinner={() => <Rings color="#0d6efd" height={100} width={100} />}
         >
           <img
-            src={"https://image.tmdb.org/t/p/original" + movie.Poster}
+            src={"https://image.tmdb.org/t/p/original" + movie.poster}
             className="card-img-top"
-            alt={movie.Title}
+            alt={movie.title}
           />
           <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary  ">
-            {movie.IMDB_Rating}
+            {movie.imdbRating}
           </span>
         </HideUntilLoaded>
       </div>

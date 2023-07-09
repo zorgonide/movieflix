@@ -7,11 +7,9 @@ const StarRating = ({ userRating, onChange, User_ID, Movie_ID }) => {
 
   const handleRatingClick = (rating) => {
     postBackend({
-      url: "rating/ratingAdd",
+      url: "api/rating/" + Movie_ID,
       data: {
-        User_ID,
-        Movie_ID,
-        User_Rating: rating,
+        userRating: rating,
       },
     }).then(() => {
       if (onChange) {
