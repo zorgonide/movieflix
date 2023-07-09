@@ -40,18 +40,6 @@ function RegisterComponent() {
               <div className="twelve card-title">
                 <h1>Register</h1>
               </div>
-              {/* <p className="card-title display-6 gray text-center">Register</p> */}
-              {/* <div className="col-sm-6 col-12 align-self-center">
-                  <div className="img">
-                    <img
-                      src={Register}
-                      width="250"
-                      height="200"
-                      className=""
-                      alt="register"
-                    />
-                  </div>
-                </div> */}
               <div className="col-12">
                 <Formik
                   initialValues={{
@@ -59,23 +47,22 @@ function RegisterComponent() {
                     email: "",
                     firstname: "",
                     lastname: "",
-                    // phone: "",
                     confirmpassword: "",
                   }}
                   validationSchema={SignUpSchema}
                   onSubmit={(values) => {
                     postBackend({
-                      url: "userprofile/register",
+                      url: "user/",
                       data: {
-                        First_Name: values.firstname,
-                        Last_Name: values.lastname,
-                        Email: values.email,
-                        Password: values.password,
+                        firstName: values.firstname,
+                        lastName: values.lastname,
+                        email: values.email,
+                        password: values.password,
                       },
                     })
                       .then((res) => res.data)
                       .then((res) => {
-                        if (res === "Added Successfully!") {
+                        if (res.token) {
                           Swal.fire({
                             confirmButtonColor: "#e31c5f",
                             title: "Success",
@@ -172,7 +159,7 @@ function RegisterComponent() {
                               ? "form-control is-invalid"
                               : "form-control"
                           }
-                          id="password"
+                          id="password-confirm"
                           type=""
                           name="confirmpassword"
                           placeholder="confirmpassword"

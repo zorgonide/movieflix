@@ -1,6 +1,7 @@
 import axios from "axios";
-// const backend = "http://127.0.0.1:8000/";
-const backend = "https://guanxinyumovieflix.me/";
+// const backend = "http://127.0.0.1:3000/";
+// const backend = "https://guanxinyumovieflix.me/";
+const backend = "https://movieflix-wpa8.onrender.com/";
 
 let cache = {};
 export const fget = async ({ url }) => {
@@ -45,21 +46,53 @@ export const fdelete = async ({ url }) => {
   return res;
 };
 export const getBackend = async ({ url }) => {
-  const res = await axios.get(backend + `${url}`, {});
-  return res;
+  try {
+    const res = await axios.get(backend + `${url}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return res;
+  } catch (err) {
+    return err;
+  }
 };
 
 export const patchBackend = async ({ url, data }) => {
-  const res = await axios.put(backend + `${url}`, data, {});
-  return res;
+  try {
+    const res = await axios.put(backend + `${url}`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return res;
+  } catch (err) {
+    return err;
+  }
 };
 
 export const postBackend = async ({ url, data }) => {
-  const res = await axios.post(backend + `${url}`, data, {});
-  return res;
+  try {
+    let res = await axios.post(backend + `${url}`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return res;
+  } catch (err) {
+    return err;
+  }
 };
 
 export const deleteBackend = async ({ url }) => {
-  const res = await axios.delete(backend + `${url}`, {});
-  return res;
+  try {
+    const res = await axios.delete(backend + `${url}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return res;
+  } catch (err) {
+    return err;
+  }
 };

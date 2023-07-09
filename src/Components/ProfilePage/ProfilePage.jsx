@@ -4,39 +4,27 @@ import { useUser } from "../../Shared/js/user-context";
 import Error from "../ErrorPage/ErrorPage";
 import { Rings } from "react-loader-spinner";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { patchBackend, postBackend } from "../../Utilities/apiCalls";
+import {
+  getBackend,
+  patchBackend,
+  postBackend,
+} from "../../Utilities/apiCalls";
 import Swal from "sweetalert2";
 function ProfilePage() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [profile, setProfile] = useState({});
-  const [moviesWatched, setMoviesWatched] = useState([]);
 
   const {
     state: { user },
   } = useUser();
-  const MoviesWatchedFunction = () => {
-    return postBackend({
-      url: "watchedList/watchedListSearch",
-      data: {
-        User_ID: user.User_ID,
-      },
-    })
-      .then((res) => res.data)
-      .then((res) => {
-        setMoviesWatched(res);
-      });
-  };
   const fetchUser = async () => {
-    return postBackend({
-      url: "userprofile/get",
-      data: {
-        User_ID: user.User_ID,
-      },
+    return getBackend({
+      url: "user/",
     })
       .then((res) => res.data)
       .then((res) => {
-        setProfile(res[0]);
+        setProfile(res);
       })
       .catch(() => {
         Swal.fire({
@@ -49,7 +37,7 @@ function ProfilePage() {
   };
 
   useEffect(() => {
-    Promise.all([fetchUser(), MoviesWatchedFunction()]).then(() => {
+    fetchUser().then(() => {
       setIsLoaded(true);
     });
   }, []);
@@ -82,7 +70,7 @@ function ProfilePage() {
                   <img
                     defer
                     src={`https://ui-avatars.com/api/name=${
-                      profile.First_Name + "+" + profile.Last_Name
+                      profile.firstName + "+" + profile.lastName
                     }&color=e31c5f`}
                     className="profilePic"
                     alt="pic"
@@ -90,24 +78,24 @@ function ProfilePage() {
                 </div>
                 <Formik
                   initialValues={{
-                    email: profile.Email,
-                    firstname: profile.First_Name,
-                    lastname: profile.Last_Name,
-                    userId: profile.User_ID,
+                    email: profile.email,
+                    firstname: profile.firstName,
+                    lastname: profile.lastName,
+                    userId: profile.id,
                     password: "",
                   }}
                   onSubmit={(values) => {
                     let data = {
-                      User_ID: user.User_ID,
-                      First_Name: values.firstname,
-                      Last_Name: values.lastname,
-                      Email: values.email,
+                      firstName: values.firstname,
+                      lastName: values.lastname,
+                      email: values.email,
+                      password: values.password,
                     };
                     if (values.password) {
                       data["Password"] = values.password;
                     }
                     patchBackend({
-                      url: "userprofile/put",
+                      url: "user/",
                       data: data,
                     }).then(() => {
                       fetchUser();

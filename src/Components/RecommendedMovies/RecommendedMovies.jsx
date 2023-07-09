@@ -18,9 +18,9 @@ function RecommendedMovies() {
   const {
     state: { user },
   } = useUser();
-  const genres = Array.isArray(user.Genres)
-    ? user.Genres.join(",")
-    : user.Genres;
+  const genres = Array.isArray(user.genres)
+    ? user.genres.join(",")
+    : user.genres;
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);

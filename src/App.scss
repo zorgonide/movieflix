@@ -251,7 +251,10 @@ h1 em {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  // cursor: pointer;
+  :hover {
+    cursor: pointer;
+    scale: 1.011;
+  }
 }
 
 .movie img {
