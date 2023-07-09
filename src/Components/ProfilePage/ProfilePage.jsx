@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../../Shared/js/user-context";
+import { Link } from "react-router-dom";
 import Error from "../ErrorPage/ErrorPage";
 import { Rings } from "react-loader-spinner";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import {
-  getBackend,
-  patchBackend,
-  postBackend,
-} from "../../Utilities/apiCalls";
+import { getBackend, patchBackend } from "../../Utilities/apiCalls";
 import Swal from "sweetalert2";
 function ProfilePage() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [profile, setProfile] = useState({});
 
-  const {
-    state: { user },
-  } = useUser();
   const fetchUser = async () => {
     return getBackend({
       url: "user/",
@@ -27,6 +19,7 @@ function ProfilePage() {
         setProfile(res);
       })
       .catch(() => {
+        setError(true);
         Swal.fire({
           title: "Error",
           text: `Some error occurred in fetching user`,

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "../../Shared/js/ProtectedRoute";
 import GenrePage from "../GenrePage/GenrePage";
-import Header from "../HeaderComponent/HeaderComponent";
 import LoginComponent from "../LoginComponent/LoginComponent";
 import ManageUsers from "../ManageUsers/ManageUsers";
 import MovieDetail from "../MovieDetail/MovieDetail";
