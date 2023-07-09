@@ -100,6 +100,12 @@ function MovieDetail() {
         setIsMovieWatched(res.data);
       });
   };
+  const removeFromWatchList = () => {
+    deleteBackend({
+      url: `api/watchlist/${movieId}`,
+      data: {},
+    }).then(() => isMovieWatchedFunction());
+  };
   useEffect(() => {
     Promise.all([getMovie(), getComments(), isMovieWatchedFunction()])
       .then(() => {
@@ -141,7 +147,11 @@ function MovieDetail() {
                   <i className="fa fa-plus"></i> Watchlist
                 </button>
               ) : (
-                <button type="button" className="button buttonSelected mb-3">
+                <button
+                  type="button"
+                  className="button buttonSelected mb-3"
+                  onClick={removeFromWatchList}
+                >
                   <i className="fa fa-check"></i> Added
                 </button>
               )}
