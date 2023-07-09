@@ -47,7 +47,7 @@ export const fdelete = async ({ url }) => {
 };
 export const getBackend = async ({ url }) => {
   try {
-    const res = await axios.get(backend + `${url}`, { withCredentials: true });
+    const res = await axios.get(backend + `${url}`, {});
     return res;
   } catch (err) {
     return err;
@@ -56,9 +56,7 @@ export const getBackend = async ({ url }) => {
 
 export const patchBackend = async ({ url, data }) => {
   try {
-    const res = await axios.put(backend + `${url}`, data, {
-      withCredentials: true,
-    });
+    const res = await axios.put(backend + `${url}`, data, {});
     return res;
   } catch (err) {
     return err;
@@ -67,9 +65,7 @@ export const patchBackend = async ({ url, data }) => {
 
 export const postBackend = async ({ url, data }) => {
   try {
-    let res = await axios.post(backend + `${url}`, data, {
-      withCredentials: true,
-    });
+    let res = await axios.post(backend + `${url}`, data, {});
     return res;
   } catch (err) {
     return err;
@@ -78,9 +74,7 @@ export const postBackend = async ({ url, data }) => {
 
 export const deleteBackend = async ({ url }) => {
   try {
-    const res = await axios.delete(backend + `${url}`, {
-      withCredentials: true,
-    });
+    const res = await axios.delete(backend + `${url}`, {});
     return res;
   } catch (err) {
     return err;
