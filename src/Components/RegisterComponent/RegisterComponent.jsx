@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { postBackend } from "../../Utilities/apiCalls";
 import * as Yup from "yup";
@@ -11,6 +11,7 @@ const SignUpSchema = Yup.object().shape({
     .label("password")
     .required("Required")
     .min(8, "Seems a bit short..."),
+
   // .matches(
   //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
   //   "At least 1 letter, 1 number and 1 special character"
@@ -31,6 +32,8 @@ const SignUpSchema = Yup.object().shape({
 
 function RegisterComponent() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
   return (
     <div className="container centered">
       <div className="row justify-content-center">
@@ -51,6 +54,7 @@ function RegisterComponent() {
                   }}
                   validationSchema={SignUpSchema}
                   onSubmit={(values) => {
+                    setLoading(true);
                     postBackend({
                       url: "user/",
                       data: {
@@ -63,6 +67,7 @@ function RegisterComponent() {
                       .then((res) => res.data)
                       .then((res) => {
                         if (res.token) {
+                          setLoading(false);
                           Swal.fire({
                             confirmButtonColor: "#e31c5f",
                             title: "Success",
@@ -174,7 +179,8 @@ function RegisterComponent() {
                       </div>
                       <div className="d-grid gap-2">
                         <button type="submit" className="button button1 mb-3">
-                          <i className="fa fa-user-plus"></i> Register
+                          <i className="fa fa-user-plus"></i>{" "}
+                          {!loading ? "Register" : "Registering..."}
                         </button>
                       </div>
                     </Form>

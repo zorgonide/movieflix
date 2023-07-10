@@ -35,6 +35,7 @@ function LoginComponent() {
                 }}
                 validationSchema={LoginSchema}
                 onSubmit={(values) => {
+                  setLoading(true);
                   postBackend({
                     url: `signin`,
                     data: {
