@@ -23,9 +23,9 @@ function MoviesWatched({ movies }) {
                         src={"https://image.tmdb.org/t/p/original" + ele.poster}
                         alt="Movie"
                       />
-                      <div class="movie-details">
-                        <h2 class="movie-title">{ele.title}</h2>
-                        <p class="movie-rating">
+                      <div className="movie-details">
+                        <h2 className="movie-title">{ele.title}</h2>
+                        <p className="movie-rating">
                           IMDB Rating: {ele.imdbRating}
                         </p>
                       </div>
