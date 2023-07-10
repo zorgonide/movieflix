@@ -28,7 +28,7 @@ function Header() {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      {!user.role === "admin" ? (
+      {user.role === "USER" ? (
         <div
           className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
           id="navbarNav"
