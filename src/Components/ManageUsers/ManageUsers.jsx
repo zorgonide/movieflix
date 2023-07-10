@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { getBackend, postBackend } from "../../Utilities/apiCalls";
+import { deleteBackend, getBackend } from "../../Utilities/apiCalls";
 
 function ManageUsers() {
   const [error, setError] = useState(null);
@@ -21,10 +20,10 @@ function ManageUsers() {
       showCancelButton: true,
     }).then((res) => {
       if (res.isConfirmed) {
-        postBackend({
-          url: `userprofile/userprofileDel`,
+        deleteBackend({
+          url: `user/`,
           data: {
-            User_ID: id,
+            id: id,
           },
         }).then(() => {
           Swal.fire({
@@ -40,17 +39,13 @@ function ManageUsers() {
   };
   const fetchUsers = () => {
     getBackend({
-      url: `userprofile/register`,
+      url: `users/`,
       data: {},
     })
       .then((res) => res.data)
       .then(
         (result) => {
-          setTotalItems(
-            result.sort(function (a, b) {
-              return a.User_ID < b.User_ID;
-            })
-          );
+          setTotalItems(result);
           setIsLoaded(true);
         },
         (error) => {
@@ -95,7 +90,7 @@ function ManageUsers() {
             >
               <div className="col text-center">
                 <p>
-                  <i className="fa fa-hashtag"></i> {element.User_ID}
+                  <i className="fa fa-hashtag"></i> {element.id}
                 </p>
               </div>
               <div className="col-3 text-center">
@@ -105,16 +100,16 @@ function ManageUsers() {
                 <p className="">{element.lastName}</p>
               </div>
               <div className="col text-center">
-                <p className="">{element.Email}</p>
+                <p className="">{element.email}</p>
               </div>
               <div className="col text-center">
                 <p className="">
-                  {element.Is_Staff ? "Admin User" : "Normal User"}
+                  {element.role === "ADMIN" ? "Admin User" : "Normal User"}
                 </p>
               </div>
               <div
                 className="col text-center "
-                onClick={() => deleteUser(element.User_ID)}
+                onClick={() => deleteUser(element.id)}
               >
                 <p className="deleteButton">
                   <i className="fa fa-trash"></i>
