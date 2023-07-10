@@ -197,33 +197,20 @@ function MovieDetail() {
                 commentData={comments}
                 onSubmitAction={(data) => {
                   postBackend({
-                    url: "api/comment",
+                    url: "api/comment/" + movieId,
                     data: {
-                      movieId: movieId,
                       comment: data.text,
                     },
                   });
                 }}
-                currentData={(data) => {
-                  // console.log("current data", data);
-                }}
-                onDeleteAction={(data) => {
+                onDeleteAction={(data, rest) => {
                   deleteBackend({
                     url: "api/comment/" + data.comIdToDelete,
-                  }).then(() => {
-                    Swal.fire({
-                      confirmButtonColor: "#4fbfa8",
-                      title: "Success",
-                      text: `Deleted comment`,
-                      icon: "success",
-                      confirmButtonText: "Dismiss",
-                    });
-                  });
-                  getComments();
+                  }).then(() => getComments());
                 }}
                 onEditAction={(data) => {
                   patchBackend({
-                    url: "api/comment/",
+                    url: "api/comment/" + movieId,
                     data: {
                       id: data.comId,
                       comment: data.text,
