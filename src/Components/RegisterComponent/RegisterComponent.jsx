@@ -165,7 +165,7 @@ function RegisterComponent() {
                               : "form-control"
                           }
                           id="password-confirm"
-                          type=""
+                          type="password"
                           name="confirmpassword"
                           placeholder="confirmpassword"
                           autoComplete="new-password"
