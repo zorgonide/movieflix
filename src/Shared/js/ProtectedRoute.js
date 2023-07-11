@@ -5,9 +5,13 @@ import { useUser } from "./user-context";
 
 function ProtectedRoute(props) {
   const {
-    state: { loggedIn },
+    state: { user },
   } = useUser();
-  let verified = loggedIn;
+  const { dispatch } = useUser();
+  let verified = localStorage.getItem("user") ? true : false;
+  if (verified && !user) {
+    dispatch({ type: "login", user: JSON.parse(localStorage.getItem("user")) });
+  }
   return verified ? (
     <>
       <Header />
