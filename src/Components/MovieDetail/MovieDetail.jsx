@@ -42,7 +42,15 @@ function MovieDetail() {
   const getMovie = () => {
     return postBackend({
       url: "api/movie/" + movieId,
-      data: movie,
+      data: {
+        id: +movieId,
+        title: movie.title || "",
+        release_date: movie.release_date || "",
+        overview: movie.overview || "",
+        imdbRating: +movie.vote_average || 0,
+        poster_path: movie.poster_path || "",
+        backdrop_path: movie.backdrop_path || "",
+      },
     })
       .then((res) => res.data)
       .then(
@@ -114,6 +122,7 @@ function MovieDetail() {
       .then(() => {
         setIsLoaded(true);
       });
+    // window.scrollTo(0, 0);
   }, [movie]);
   if (error) {
     return <Error error={error.status_message} />;
