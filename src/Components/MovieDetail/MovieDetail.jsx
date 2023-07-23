@@ -3,6 +3,7 @@ import { Rings } from "react-loader-spinner";
 import { useParams, useLocation } from "react-router-dom";
 import {
   deleteBackend,
+  fget,
   getBackend,
   patchBackend,
   postBackend,
@@ -12,9 +13,19 @@ import Error from "../ErrorPage/ErrorPage";
 import { CommentSection } from "react-comments-section";
 import "react-comments-section/dist/index.css";
 import { useUser } from "../../Shared/js/user-context";
-import Swal from "sweetalert2";
 import StarRating from "../Render/Stars";
-
+import TrailerFrame from "../TrailerComponent/TrailerComponent";
+const watchNowStyle = {
+  display: "inline-block",
+  padding: "10px 20px",
+  backgroundColor: "black",
+  color: "white",
+  textDecoration: "none",
+  borderRadius: "5px",
+  fontSize: "16px",
+  fontWeight: "bold",
+  margin: "10px 0",
+};
 function MovieDetail() {
   let { movieId } = useParams();
   const location = useLocation();
@@ -26,6 +37,8 @@ function MovieDetail() {
   const [comments, setComments] = useState(null);
   const [backendMovie, setBackendMovie] = useState(null);
   const [userRating, setUserRating] = useState(0);
+  const [trailer, setTrailer] = useState(null);
+  const [watchOptions, setWatchOptions] = useState(null);
   const handleRatingChange = (rating) => {
     setUserRating(rating);
   };
@@ -39,6 +52,25 @@ function MovieDetail() {
       data: {},
     }).then(() => isMovieWatchedFunction());
   };
+
+  const getTrailer = () => {
+    return fget({
+      url: `/3/movie/${movieId}/videos?api_key=${process.env.REACT_APP_BASE_TOKEN}`,
+    })
+      .then((res) => res.data)
+      .then(
+        (result) => {
+          setTrailer(
+            result.results.find((ele) => ele.type === "Trailer") ||
+              result.results[0]
+          );
+        },
+        (error) => {
+          setError(error);
+        }
+      );
+  };
+
   const getMovie = () => {
     return postBackend({
       url: "api/movie/" + movieId,
@@ -114,15 +146,41 @@ function MovieDetail() {
       data: {},
     }).then(() => isMovieWatchedFunction());
   };
+  const getWatchOptions = () => {
+    let location = navigator.language.split("-")[1];
+    return fget({
+      url: `/3/movie/${movieId}/watch/providers?api_key=${process.env.REACT_APP_BASE_TOKEN}`,
+    })
+      .then((res) => res.data)
+      .then(
+        (result) => {
+          setWatchOptions(
+            result.results[location] ||
+              result.results.GB ||
+              result.results.US ||
+              result.results.IN
+          );
+        },
+        (error) => {
+          setError(error);
+        }
+      );
+  };
   useEffect(() => {
-    Promise.all([getMovie(), getComments(), isMovieWatchedFunction()])
+    window.scrollTo(0, 0);
+    Promise.all([
+      getMovie(),
+      getComments(),
+      isMovieWatchedFunction(),
+      getTrailer(),
+      getWatchOptions(),
+    ])
       .then(() => {
         getMovieRating();
       })
       .then(() => {
         setIsLoaded(true);
       });
-    // window.scrollTo(0, 0);
   }, [movie]);
   if (error) {
     return <Error error={error.status_message} />;
@@ -143,9 +201,10 @@ function MovieDetail() {
   } else
     return (
       <div className="container py-4">
-        <div className="row mt-4 py-4 d-flex justify-content-around">
+        <div className="row d-flex justify-content-around">
           <div className="col-12 col-sm-2">
             <SingleCard movie={backendMovie}></SingleCard>
+
             <div className="d-grid gap-2 my-3">
               {!isMovieWatched ? (
                 <button
@@ -167,10 +226,13 @@ function MovieDetail() {
             </div>
           </div>
           <div className="col-12 col-sm-8">
-            <div className="heading">
+            <div className="heading my-2">
               <div className="ten">
                 <h1>{backendMovie.title}</h1>
               </div>
+            </div>
+            <div className="trailer-container">
+              <TrailerFrame trailerData={trailer} />
             </div>
             <div className="my-4">
               <div className="row">
@@ -194,6 +256,18 @@ function MovieDetail() {
               </div>
             </div>
             <div className="description my-4">{backendMovie.description}</div>
+            <div className="row">
+              <div className="watch-link">
+                <a
+                  href={watchOptions?.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={watchNowStyle}
+                >
+                  <i className="fa fa-play"></i> Watch Now
+                </a>
+              </div>
+            </div>
             <div className="comments">
               <CommentSection
                 currentUser={{
