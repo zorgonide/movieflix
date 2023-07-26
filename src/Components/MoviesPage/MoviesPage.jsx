@@ -34,7 +34,7 @@ function MoviesPage(props) {
   };
   useEffect(() => {
     if (!genres) {
-      navigate("/");
+      navigate("/genres");
       return;
     }
     fget({

@@ -47,7 +47,7 @@ function RecommendedMovies() {
 
   useEffect(() => {
     if (!genres) {
-      navigate("/");
+      navigate("/genres");
       return;
     }
     getMovies();
