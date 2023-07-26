@@ -99,21 +99,7 @@ function MoviesPage(props) {
   } else
     return (
       <div className="container-home">
-        <div className="row pt-2 justify-content-center">
-          <div className="ten">
-            <h1>Upcoming Movies</h1>
-          </div>
-          <div className="col-12 col-sm-10 carouselSlider mt-2">
-            <UncontrolledCarousel
-              items={upcoming}
-              indicators={false}
-              autoPlay={true}
-              controls={true}
-            />
-          </div>
-        </div>
         <br></br>
-
         <div className="row justify-content-center">
           <div className="heading">
             <div className="ten">
@@ -139,6 +125,20 @@ function MoviesPage(props) {
           </div>
           <div className="col-12">
             <CardsRow movies={topRated}></CardsRow>
+          </div>
+        </div>
+        <br></br>
+        <div className="row pt-2 justify-content-center">
+          <div className="ten">
+            <h1>Upcoming Movies</h1>
+          </div>
+          <div className="col-12 col-sm-10 carouselSlider mt-2">
+            <UncontrolledCarousel
+              items={upcoming}
+              indicators={false}
+              autoPlay={true}
+              controls={true}
+            />
           </div>
         </div>
         <br></br>

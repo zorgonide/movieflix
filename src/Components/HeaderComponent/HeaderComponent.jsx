@@ -13,7 +13,10 @@ function Header() {
   let navigate = useNavigate();
   return (
     <nav className="navbar navbar-expand-lg navbar-dark px-3">
-      <a className="navbar-brand logo" onClick={() => navigate("/")}>
+      <a
+        className="navbar-brand logo d-none d-md-inline"
+        onClick={() => navigate("/")}
+      >
         <h1>MovieFlix</h1>
       </a>
       <button

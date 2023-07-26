@@ -5,6 +5,7 @@ const UserContext = React.createContext();
 function userReducer(state, action) {
   switch (action.type) {
     case "login": {
+      localStorage.setItem("user", JSON.stringify(action.user));
       return {
         user: action.user,
         loggedIn: true,
@@ -12,6 +13,7 @@ function userReducer(state, action) {
       };
     }
     case "logout": {
+      localStorage.removeItem("user");
       return { user: {}, loggedIn: false, genres: {} };
     }
     case "genres": {
@@ -28,7 +30,9 @@ function userReducer(state, action) {
 }
 
 function UserProvider({ children }) {
-  const [state, dispatch] = React.useReducer(userReducer, { user: false });
+  const [state, dispatch] = React.useReducer(userReducer, {
+    user: JSON.parse(localStorage.getItem("user")),
+  });
   const value = { state, dispatch };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
