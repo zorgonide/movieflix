@@ -180,6 +180,14 @@ function MovieDetail() {
       })
       .then(() => {
         setIsLoaded(true);
+        window.adobeDataLayer.push({
+          event: "movie-detail",
+          movie: {
+            id: movieId,
+            title: backendMovie.title,
+            release_date: backendMovie.year,
+          },
+        });
       });
   }, [movie]);
   if (error) {
