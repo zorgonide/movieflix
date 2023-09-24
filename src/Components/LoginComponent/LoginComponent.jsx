@@ -48,6 +48,11 @@ function LoginComponent() {
                       setLoading(false);
                       dispatch({ type: "login", user: res.user });
                       localStorage.setItem("token", res.token);
+                      window.adobeDataLayer.push({
+                        event: "user-login",
+                        user: res.user.id,
+                      });
+
                       if (res.user.role === "admin") navigate("/manage");
                       else
                         res.user.genres.length
