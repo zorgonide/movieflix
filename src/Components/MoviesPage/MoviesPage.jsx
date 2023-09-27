@@ -33,6 +33,10 @@ function MoviesPage(props) {
     });
   };
   useEffect(() => {
+    window.adobeDataLayer.push({
+      event: "page-view",
+      page: "home",
+    });
     if (!genres) {
       navigate("/genres");
       return;

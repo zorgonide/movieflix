@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "font-awesome/css/font-awesome.min.css";
 import { postBackend } from "../../Utilities/apiCalls";
 
-const StarRating = ({ userRating, onChange, User_ID, Movie_ID }) => {
+const StarRating = ({ userRating, onChange, Title, Movie_ID }) => {
   const [hoverRating, setHoverRating] = useState(0);
 
   const handleRatingClick = (rating) => {
@@ -11,11 +11,22 @@ const StarRating = ({ userRating, onChange, User_ID, Movie_ID }) => {
       data: {
         userRating: rating,
       },
-    }).then(() => {
-      if (onChange) {
-        onChange(rating);
-      }
-    });
+    })
+      .then(() => {
+        if (onChange) {
+          onChange(rating);
+        }
+      })
+      .then(() => {
+        window.adobeDataLayer.push({
+          event: "rating",
+          rating: {
+            id: Movie_ID,
+            title: Title,
+            rating: rating,
+          },
+        });
+      });
   };
 
   const handleRatingHover = (rating) => {

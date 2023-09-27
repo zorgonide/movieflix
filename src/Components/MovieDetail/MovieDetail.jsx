@@ -251,6 +251,7 @@ function MovieDetail() {
                   <StarRating
                     User_ID={user.id}
                     Movie_ID={movieId}
+                    Title={backendMovie.title}
                     userRating={userRating}
                     onChange={handleRatingChange}
                   />
@@ -292,7 +293,17 @@ function MovieDetail() {
                     data: {
                       comment: data.text,
                     },
-                  });
+                  })
+                    .then(() => getComments())
+                    .then(() => {
+                      window.adobeDataLayer.push({
+                        event: "comment",
+                        comment: {
+                          id: movieId,
+                          title: backendMovie.title,
+                        },
+                      });
+                    });
                 }}
                 onDeleteAction={(data, rest) => {
                   deleteBackend({
