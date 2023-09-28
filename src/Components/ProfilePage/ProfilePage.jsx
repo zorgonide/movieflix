@@ -33,11 +33,6 @@ function ProfilePage() {
         fetchUser().then(() => {
             setIsLoaded(true);
         });
-        window.adobeDataLayer = window.adobeDataLayer || [];
-        window.adobeDataLayer.push({
-            event: "page-view",
-            page: "profile",
-        });
     }, []);
     if (error) {
         return <Error error={error.status_message} />;

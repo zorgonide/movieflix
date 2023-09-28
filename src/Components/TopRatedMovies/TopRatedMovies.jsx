@@ -34,12 +34,6 @@ function TopRatedMovies() {
             );
     };
     useEffect(() => {
-        window.adobeDataLayer = window.adobeDataLayer || [];
-
-        window.adobeDataLayer.push({
-            event: "page-view",
-            page: "top-rated",
-        });
         getMovies();
     }, []);
     if (error) {

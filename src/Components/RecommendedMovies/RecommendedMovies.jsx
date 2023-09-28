@@ -46,11 +46,6 @@ function RecommendedMovies() {
     };
 
     useEffect(() => {
-        window.adobeDataLayer = window.adobeDataLayer || [];
-        window.adobeDataLayer.push({
-            event: "page-view",
-            page: "recommended",
-        });
         if (!genres) {
             navigate("/genres");
             return;
