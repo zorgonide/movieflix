@@ -5,6 +5,30 @@
             src="https://assets.adobedtm.com/d4e187856f02/9fb1980c64e8/launch-112fdac555b8-development.min.js"
             async
         ></script>
+        <!-- Relay42 Base Script -->
+        <script>
+            (function (a, d, e, b, f, c, s) {
+                a[b] =
+                    a[b] ||
+                    function () {
+                        a[b].q.push(arguments);
+                    };
+                a[b].q = [];
+                c = d.createElement(e);
+                c.async = 1;
+                c.src = "//tdn.r42tag.com/lib/" + f + ".js";
+                s = d.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(c, s);
+            })(window, document, "script", "_st", "1427-v1");
+
+            // Add additional settings here (optional)
+            _st("setEnvironment", "test");
+            _st("addTagProperties", {
+                example: "property",
+                otherExample: "property",
+            });
+            _st("loadTags");
+        </script>
         <meta charset="utf-8" />
         <link rel="icon" href="%PUBLIC_URL%/movie.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
