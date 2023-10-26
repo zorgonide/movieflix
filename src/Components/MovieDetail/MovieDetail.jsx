@@ -1,30 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Rings } from "react-loader-spinner";
-import { useParams, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Rings } from 'react-loader-spinner';
+import { useParams, useLocation } from 'react-router-dom';
 import {
     deleteBackend,
     fget,
     getBackend,
     patchBackend,
     postBackend,
-} from "../../Utilities/apiCalls";
-import SingleCard from "../Render/SingleCard";
-import Error from "../ErrorPage/ErrorPage";
-import { CommentSection } from "react-comments-section";
-import "react-comments-section/dist/index.css";
-import { useUser } from "../../Shared/js/user-context";
-import StarRating from "../Render/Stars";
-import TrailerFrame from "../TrailerComponent/TrailerComponent";
+} from '../../Utilities/apiCalls';
+import SingleCard from '../Render/SingleCard';
+import Error from '../ErrorPage/ErrorPage';
+import { CommentSection } from 'react-comments-section';
+import 'react-comments-section/dist/index.css';
+import { useUser } from '../../Shared/js/user-context';
+import StarRating from '../Render/Stars';
+import TrailerFrame from '../TrailerComponent/TrailerComponent';
+import { trackEvent } from '../../Shared/js/r42';
 const watchNowStyle = {
-    display: "inline-block",
-    padding: "10px 20px",
-    backgroundColor: "black",
-    color: "white",
-    textDecoration: "none",
-    borderRadius: "5px",
-    fontSize: "16px",
-    fontWeight: "bold",
-    margin: "10px 0",
+    display: 'inline-block',
+    padding: '10px 20px',
+    backgroundColor: 'black',
+    color: 'white',
+    textDecoration: 'none',
+    borderRadius: '5px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    margin: '10px 0',
 };
 function MovieDetail() {
     let { movieId } = useParams();
@@ -48,12 +49,13 @@ function MovieDetail() {
 
     const addToWatchlist = () => {
         window.adobeDataLayer.push({
-            event: "watchlist",
+            event: 'watchlist',
             watchlist: {
                 id: movieId,
                 title: backendMovie.title,
             },
         });
+        setR42('addToWatchList');
         postBackend({
             url: `api/watchlist/${movieId}`,
             data: {},
@@ -68,7 +70,7 @@ function MovieDetail() {
             .then(
                 (result) => {
                     setTrailer(
-                        result.results.find((ele) => ele.type === "Trailer") ||
+                        result.results.find((ele) => ele.type === 'Trailer') ||
                             result.results[0]
                     );
                 },
@@ -80,15 +82,15 @@ function MovieDetail() {
 
     const getMovie = () => {
         return postBackend({
-            url: "api/movie/" + movieId,
+            url: 'api/movie/' + movieId,
             data: {
                 id: +movieId,
-                title: movie.title || "",
-                release_date: movie.release_date || "",
-                overview: movie.overview || "",
+                title: movie.title || '',
+                release_date: movie.release_date || '',
+                overview: movie.overview || '',
                 imdbRating: +movie.vote_average || 0,
-                poster_path: movie.poster_path || "",
-                backdrop_path: movie.backdrop_path || "",
+                poster_path: movie.poster_path || '',
+                backdrop_path: movie.backdrop_path || '',
             },
         })
             .then((res) => res.data)
@@ -96,7 +98,7 @@ function MovieDetail() {
                 (result) => {
                     setBackendMovie(result);
                     window.adobeDataLayer.push({
-                        event: "movie-detail",
+                        event: 'movie-detail',
                         movie: {
                             id: movieId,
                             title: result.title,
@@ -122,10 +124,10 @@ function MovieDetail() {
                             userId: ele.userId,
                             comId: ele.id,
                             fullName:
-                                ele.user.firstName + " " + ele.user.lastName,
+                                ele.user.firstName + ' ' + ele.user.lastName,
                             text: ele.comment,
                             avatarUrl: `https://ui-avatars.com/api/name=${
-                                ele.user.firstName + "+" + ele.user.lastName
+                                ele.user.firstName + '+' + ele.user.lastName
                             }&background=random`,
                             replies: [],
                         };
@@ -163,7 +165,7 @@ function MovieDetail() {
         }).then(() => isMovieWatchedFunction());
     };
     const getWatchOptions = () => {
-        let location = navigator.language.split("-")[1];
+        let location = navigator.language.split('-')[1];
         return fget({
             url: `/3/movie/${movieId}/watch/providers?api_key=${process.env.REACT_APP_BASE_TOKEN}`,
         })
@@ -182,6 +184,20 @@ function MovieDetail() {
                 }
             );
     };
+    const setR42 = (action) => {
+        let data = {
+            movieIMDBRating: movie.vote_average,
+            movieReleaseDate: movie.release_date,
+            movieID: movieId,
+            movieTitle: movie.title,
+        };
+        if (action) {
+            data['action'] = action;
+        }
+
+        trackEvent(data);
+    };
+
     useEffect(() => {
         window.scrollTo(0, 0);
         Promise.all([
@@ -196,6 +212,7 @@ function MovieDetail() {
             })
             .then(() => {
                 setIsLoaded(true);
+                setR42();
             });
     }, [movie]);
     if (error) {
@@ -204,56 +221,56 @@ function MovieDetail() {
         return (
             <div
                 style={{
-                    width: "100%",
-                    height: "100vh",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    width: '100%',
+                    height: '100vh',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                 }}
             >
-                <Rings color="#0d6efd" height={100} width={100} />
+                <Rings color='#0d6efd' height={100} width={100} />
             </div>
         );
     } else
         return (
-            <div className="container py-4">
-                <div className="row d-flex justify-content-around">
-                    <div className="col-12 col-sm-2">
+            <div className='container py-4'>
+                <div className='row d-flex justify-content-around'>
+                    <div className='col-12 col-sm-2'>
                         <SingleCard movie={backendMovie}></SingleCard>
 
-                        <div className="d-grid gap-2 my-3">
+                        <div className='d-grid gap-2 my-3'>
                             {!isMovieWatched ? (
                                 <button
-                                    type="button"
-                                    className="button button1 mb-3"
+                                    type='button'
+                                    className='button button1 mb-3'
                                     onClick={addToWatchlist}
                                 >
-                                    <i className="fa fa-plus"></i> Watchlist
+                                    <i className='fa fa-plus'></i> Watchlist
                                 </button>
                             ) : (
                                 <button
-                                    type="button"
-                                    className="button buttonSelected mb-3"
+                                    type='button'
+                                    className='button buttonSelected mb-3'
                                     onClick={removeFromWatchList}
                                 >
-                                    <i className="fa fa-check"></i> Added
+                                    <i className='fa fa-check'></i> Added
                                 </button>
                             )}
                         </div>
                     </div>
-                    <div className="col-12 col-sm-8">
-                        <div className="heading my-2">
-                            <div className="ten">
+                    <div className='col-12 col-sm-8'>
+                        <div className='heading my-2'>
+                            <div className='ten'>
                                 <h1>{backendMovie.title}</h1>
                             </div>
                         </div>
-                        <div className="trailer-container">
+                        <div className='trailer-container'>
                             <TrailerFrame trailerData={trailer} />
                         </div>
-                        <div className="my-4">
-                            <div className="row">
-                                <div className="col">
-                                    <div className="user-rating">
+                        <div className='my-4'>
+                            <div className='row'>
+                                <div className='col'>
+                                    <div className='user-rating'>
                                         <h4>User Rating</h4>
                                     </div>
                                     <StarRating
@@ -264,43 +281,43 @@ function MovieDetail() {
                                         onChange={handleRatingChange}
                                     />
                                 </div>
-                                <div className="col">
-                                    <div className="user-rating">
+                                <div className='col'>
+                                    <div className='user-rating'>
                                         <h4>IMDB Rating</h4>
                                         <h4> {movie.vote_average}</h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="description my-4">
+                        <div className='description my-4'>
                             {backendMovie.description}
                         </div>
-                        <div className="row">
-                            <div className="watch-link">
+                        <div className='row'>
+                            <div className='watch-link'>
                                 <a
                                     href={watchOptions?.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                    target='_blank'
+                                    rel='noopener noreferrer'
                                     style={watchNowStyle}
                                 >
-                                    <i className="fa fa-play"></i> Watch Now
+                                    <i className='fa fa-play'></i> Watch Now
                                 </a>
                             </div>
                         </div>
-                        <div className="comments">
+                        <div className='comments'>
                             <CommentSection
                                 currentUser={{
                                     currentUserId: user.id,
                                     currentUserImg: `https://ui-avatars.com/api/name=${
-                                        user.firstName + "+" + user.lastName
+                                        user.firstName + '+' + user.lastName
                                     }&background=random`,
                                     currentUserFullName:
-                                        user.firstName + " " + user.lastName, // names
+                                        user.firstName + ' ' + user.lastName, // names
                                 }}
                                 commentData={comments}
                                 onSubmitAction={(data) => {
                                     postBackend({
-                                        url: "api/comment/" + movieId,
+                                        url: 'api/comment/' + movieId,
                                         data: {
                                             comment: data.text,
                                         },
@@ -308,7 +325,7 @@ function MovieDetail() {
                                         .then(() => getComments())
                                         .then(() => {
                                             window.adobeDataLayer.push({
-                                                event: "comment",
+                                                event: 'comment',
                                                 comment: {
                                                     id: movieId,
                                                     title: backendMovie.title,
@@ -319,12 +336,12 @@ function MovieDetail() {
                                 onDeleteAction={(data, rest) => {
                                     deleteBackend({
                                         url:
-                                            "api/comment/" + data.comIdToDelete,
+                                            'api/comment/' + data.comIdToDelete,
                                     }).then(() => getComments());
                                 }}
                                 onEditAction={(data) => {
                                     patchBackend({
-                                        url: "api/comment/" + movieId,
+                                        url: 'api/comment/' + movieId,
                                         data: {
                                             id: data.comId,
                                             comment: data.text,
