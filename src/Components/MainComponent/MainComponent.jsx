@@ -12,6 +12,7 @@ import RecommendedMovies from '../RecommendedMovies/RecommendedMovies';
 import RegisterComponent from '../RegisterComponent/RegisterComponent';
 import TopRatedMovies from '../TopRatedMovies/TopRatedMovies';
 import WatchList from '../WatchList/WatchList';
+import { trackEvent } from '../../Shared/js/r42';
 
 export const GenreContext = React.createContext();
 
@@ -35,7 +36,9 @@ function MainComponent(props) {
         if (page === '') {
             page = 'main';
         }
+        window._st('resetTags');
         window._st('setPageStructure', page);
+        trackEvent();
     };
 
     // Call pushToAdobeDataLayer whenever the route changes

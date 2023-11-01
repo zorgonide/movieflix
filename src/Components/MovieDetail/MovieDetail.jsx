@@ -190,6 +190,7 @@ function MovieDetail() {
             movieReleaseDate: movie.release_date,
             movieID: movieId,
             movieTitle: movie.title,
+            dateTime: new Date().toISOString(),
         };
         if (action) {
             data['action'] = action;
@@ -299,6 +300,7 @@ function MovieDetail() {
                                     target='_blank'
                                     rel='noopener noreferrer'
                                     style={watchNowStyle}
+                                    onClick={() => setR42('watchMovie')}
                                 >
                                     <i className='fa fa-play'></i> Watch Now
                                 </a>
