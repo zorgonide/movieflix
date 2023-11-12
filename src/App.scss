@@ -2,378 +2,404 @@ $theme-red: #e31c5f;
 $title-text: #9e4784;
 $title: #d27685;
 .movie-title {
-  color: $title-text;
-  font-weight: 500;
-  font-size: large;
+    color: $title-text;
+    font-weight: 500;
+    font-size: large;
 }
 .sub-title {
-  color: whitesmoke;
+    color: whitesmoke;
 }
 .error {
-  color: $theme-red;
+    color: $theme-red;
 }
 .centered {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 .centered1 {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
 }
 .row {
-  width: 100%;
+    width: 100%;
 }
 .card {
-  box-shadow: 0 5px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    box-shadow: 0 5px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 .clickable {
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  .card:hover {
-    transform: scale(1.05);
-  }
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    .card:hover {
+        transform: scale(1.05);
+    }
 }
 .display-6 {
-  color: $theme-red;
+    color: $theme-red;
 }
 .App {
-  background-color: #37306b;
-  min-height: 100vh;
+    background-color: #37306b;
+    min-height: 100vh;
 }
 .card img {
-  width: 100%;
-  height: 18rem;
-  object-fit: cover;
+    width: 100%;
+    height: 18rem;
+    object-fit: cover;
 }
 h1 {
-  position: relative;
-  padding: 0;
-  margin: 0;
-  font-family: "Raleway", sans-serif;
-  font-weight: 300;
-  font-size: 40px;
-  color: white;
-  -webkit-transition: all 0.4s ease 0s;
-  -o-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: white;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
 }
 .error-details {
-  color: white;
+    color: white;
 }
 h1 span {
-  display: block;
-  font-size: 0.5em;
-  line-height: 1.3;
+    display: block;
+    font-size: 0.5em;
+    line-height: 1.3;
 }
 h1 em {
-  font-style: normal;
-  font-weight: 600;
+    font-style: normal;
+    font-weight: 600;
 }
 .ten h1 {
-  font-size: 24px;
-  color: $title;
-  font-weight: 600;
+    font-size: 24px;
+    color: $title;
+    font-weight: 600;
 }
 .ten h1:before {
-  background-color: #0d6efd;
-  border-radius: 0.25rem;
-  content: "";
-  display: block;
-  height: 0.25rem;
-  width: 42px;
-  margin-bottom: 1.25rem;
+    background-color: #0d6efd;
+    border-radius: 0.25rem;
+    content: '';
+    display: block;
+    height: 0.25rem;
+    width: 42px;
+    margin-bottom: 1.25rem;
 }
 .twelve h1 {
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  width: 160px;
-  text-align: center;
-  margin: auto;
-  white-space: nowrap;
-  padding-bottom: 13px;
-  color: black;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 160px;
+    text-align: center;
+    margin: auto;
+    white-space: nowrap;
+    padding-bottom: 13px;
+    color: black;
 }
 .twelve h1:before {
-  background-color: $theme-red;
-  content: "";
-  display: block;
-  height: 3px;
-  width: 75px;
-  margin-bottom: 5px;
+    background-color: $theme-red;
+    content: '';
+    display: block;
+    height: 3px;
+    width: 75px;
+    margin-bottom: 5px;
 }
 .twelve h1:after {
-  background-color: $theme-red;
-  content: "";
-  display: block;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 3px;
-  width: 75px;
-  margin-bottom: 0.25em;
+    background-color: $theme-red;
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    width: 75px;
+    margin-bottom: 0.25em;
 }
 .logo h1 {
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  width: 160px;
-  text-align: center;
-  margin: auto;
-  white-space: nowrap;
-  padding-bottom: 13px;
-  color: white;
-  cursor: pointer;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 160px;
+    text-align: center;
+    margin: auto;
+    white-space: nowrap;
+    padding-bottom: 13px;
+    color: white;
+    cursor: pointer;
 }
 .logo h1:before {
-  background-color: $theme-red;
-  content: "";
-  display: block;
-  height: 3px;
-  width: 75px;
-  margin-bottom: 5px;
+    background-color: $theme-red;
+    content: '';
+    display: block;
+    height: 3px;
+    width: 75px;
+    margin-bottom: 5px;
 }
 .logo h1:after {
-  background-color: $theme-red;
-  content: "";
-  display: block;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 3px;
-  width: 75px;
-  margin-bottom: 0.25em;
+    background-color: $theme-red;
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    width: 75px;
+    margin-bottom: 0.25em;
 }
 .button {
-  background-color: $theme-red; /* Green */
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
+    background-color: $theme-red; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
 .nav-link {
-  cursor: pointer;
+    cursor: pointer;
 }
 .button1 {
-  background-color: white;
-  color: $theme-red;
-  border: 2px solid $theme-red;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+    background-color: white;
+    color: $theme-red;
+    border: 2px solid $theme-red;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 .buttonSelected {
-  background-color: $theme-red;
-  color: white;
-  border: 2px solid $theme-red;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: default;
+    background-color: $theme-red;
+    color: white;
+    border: 2px solid $theme-red;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: default;
 }
 
 .button1:hover {
-  background-color: $theme-red;
-  color: white;
+    background-color: $theme-red;
+    color: white;
 }
 .link {
-  a:visited {
-    color: $theme-red !important;
-  }
-  a:active {
-    color: #1b6970 !important;
-  }
-  a {
-    color: $theme-red !important;
-    text-decoration: none;
-  }
+    a:visited {
+        color: $theme-red !important;
+    }
+    a:active {
+        color: #1b6970 !important;
+    }
+    a {
+        color: $theme-red !important;
+        text-decoration: none;
+    }
 }
 .img {
-  overflow: auto;
-  width: fit-content;
+    overflow: auto;
+    width: fit-content;
 }
 .view-more {
-  color: white;
-  text-decoration: none;
-  font-size: large;
-  border-style: solid;
-  padding: 2px 8px;
-  border-width: 1px;
-  border-radius: 5px;
-  :hover,
-  :active {
-    color: $theme-red;
-  }
+    color: white;
+    text-decoration: none;
+    font-size: large;
+    border-style: solid;
+    padding: 2px 8px;
+    border-width: 1px;
+    border-radius: 5px;
+    :hover,
+    :active {
+        color: $theme-red;
+    }
 }
 .logout {
-  text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
 }
 .nav-link {
-  color: white !important;
-  font-size: larger;
+    color: white !important;
+    font-size: larger;
 }
 .navbar-dark {
-  background-color: #66347f;
+    background-color: #66347f;
 }
 .description {
-  color: white;
-  font-size: larger;
+    color: white;
+    font-size: larger;
 }
 .comments {
-  .halfDiv,
-  .no-comDiv {
-    color: white;
-  }
-  .comment-title {
-    color: $title-text;
-  }
+    .halfDiv,
+    .no-comDiv {
+        color: white;
+    }
+    .comment-title {
+        color: $title-text;
+    }
 }
 
 .movie-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .movie {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  :hover {
-    cursor: pointer;
-    scale: 1.011;
-  }
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    :hover {
+        cursor: pointer;
+        scale: 1.011;
+    }
 }
 
 .movie img {
-  width: 100px;
-  height: 70px;
-  margin-right: 20px;
-  object-fit: scale-down;
+    width: 100px;
+    height: 70px;
+    margin-right: 20px;
+    object-fit: scale-down;
 }
 
 .movie-details {
-  flex: 1;
+    flex: 1;
 }
 
 .movie-title {
-  font-size: 24px;
-  margin: 0;
+    font-size: 24px;
+    margin: 0;
 }
 
 .movie-rating {
-  font-size: 18px;
-  margin: 0;
+    font-size: 18px;
+    margin: 0;
 }
 .user-rating {
-  color: white;
+    color: white;
 }
 .profilePic {
-  border-radius: 50%;
+    border-radius: 50%;
 }
 .list-card {
-  text-align: left;
-  border: 0.5px solid $theme-red;
-  text-decoration: none;
-  margin-bottom: 5px;
-  cursor: pointer;
-  font-weight: 500;
-  // font-size: 1.5vw;
-  :hover {
-    .name {
-      color: $theme-red;
+    text-align: left;
+    border: 0.5px solid $theme-red;
+    text-decoration: none;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    // font-size: 1.5vw;
+    :hover {
+        .name {
+            color: $theme-red;
+        }
     }
-  }
 }
 .list-card1 {
-  text-align: left;
-  border: 0.5px solid $theme-red;
-  text-decoration: none;
-  margin-bottom: 5px;
-  // cursor: pointer;
-  font-weight: 500;
-  // font-size: 1.5vw;
+    text-align: left;
+    border: 0.5px solid $theme-red;
+    text-decoration: none;
+    margin-bottom: 5px;
+    // cursor: pointer;
+    font-weight: 500;
+    // font-size: 1.5vw;
 }
 .deleteButton {
-  color: red;
-  padding: 5px;
-  cursor: pointer;
+    color: red;
+    padding: 5px;
+    cursor: pointer;
 }
 .container-home {
-  display: flex;
-  width: 100%;
-  padding: 0 1rem;
-  margin-right: auto;
-  margin-left: auto;
-  justify-content: center;
-  flex-direction: column;
-  align-content: center;
-  flex-wrap: wrap;
+    display: flex;
+    width: 100%;
+    padding: 0 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
 }
 .movie-card {
-  position: relative;
+    position: relative;
 }
 
 .overlay-card {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .movie-card:hover .overlay-card {
-  display: flex;
+    display: flex;
 }
 
 .overlay-card .badge {
-  position: relative;
-  z-index: 1;
+    position: relative;
+    z-index: 1;
 }
 
 .card-img-top {
-  transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 
 .movie-card:hover .card-img-top {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 .text-overlay {
-  font-weight: bold;
-  color: white;
-  font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    font-size: 1.5rem;
 }
 .trailer-container {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 .iframe-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
 }
 .iframe-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.search-bar {
+    box-shadow: inset #abacaf 0 0 0 2px;
+    border: 0;
+    height: 100%;
+    // background: rgba(0, 0, 0, 0);
+    appearance: none;
+    width: 100%;
+    position: relative;
+    border-radius: 3px;
+    padding: 9px 12px;
+    line-height: 1.4;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    :hover {
+        box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
+    }
+    :focus {
+        background: #fff;
+        outline: 0;
+        box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
+    }
 }

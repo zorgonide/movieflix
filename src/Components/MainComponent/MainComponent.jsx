@@ -13,6 +13,7 @@ import RegisterComponent from '../RegisterComponent/RegisterComponent';
 import TopRatedMovies from '../TopRatedMovies/TopRatedMovies';
 import WatchList from '../WatchList/WatchList';
 import { trackEvent } from '../../Shared/js/r42';
+import SearchPage from '../SearchComponent/SearchPage';
 
 export const GenreContext = React.createContext();
 
@@ -83,6 +84,7 @@ function MainComponent(props) {
                     <Route exact path='/profile' element={<ProfilePage />} />
                     <Route exact path='/watchlist' element={<WatchList />} />
                     <Route exact path='/manage' element={<ManageUsers />} />
+                    <Route exact path='/search' element={<SearchPage />} />
                 </Route>
                 <Route path='*' element={<NotFound />} />
             </Routes>
