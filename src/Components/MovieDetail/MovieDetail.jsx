@@ -288,7 +288,12 @@ function MovieDetail() {
                                 <div className='col'>
                                     <div className='user-rating'>
                                         <h4>IMDB Rating</h4>
-                                        <h4> {movie.vote_average}</h4>
+                                        <h4>
+                                            {' '}
+                                            {Math.round(
+                                                movie.vote_average * 10
+                                            ) / 10}
+                                        </h4>
                                     </div>
                                 </div>
                             </div>
