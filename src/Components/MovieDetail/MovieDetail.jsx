@@ -69,10 +69,13 @@ function MovieDetail() {
             .then((res) => res.data)
             .then(
                 (result) => {
-                    setTrailer(
-                        result.results.find((ele) => ele.type === 'Trailer') ||
-                            result.results[0]
-                    );
+                    if (result.results.length > 0)
+                        setTrailer(
+                            result.results.find(
+                                (ele) => ele.type === 'Trailer'
+                            ) || result.results[0]
+                        );
+                    else setTrailer(null);
                 },
                 (error) => {
                     setError(error);
