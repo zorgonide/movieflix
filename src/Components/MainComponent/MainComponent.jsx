@@ -30,16 +30,16 @@ function MainComponent(props) {
         });
     };
     const pushToRelay42 = (pageName) => {
-        let page = pageName.slice(1);
-        if (/^\/movie\/\d+$/.test(pageName)) {
-            page = 'movie';
-        }
-        if (page === '') {
-            page = 'main';
-        }
-        window._st('resetTags');
-        window._st('setPageStructure', page);
-        trackEvent();
+        // let page = pageName.slice(1);
+        // if (/^\/movie\/\d+$/.test(pageName)) {
+        //     page = 'movie';
+        // }
+        // if (page === '') {
+        //     page = 'main';
+        // }
+        // window._st('resetTags');
+        // window._st('setPageStructure', page);
+        // trackEvent();
     };
 
     // Call pushToAdobeDataLayer whenever the route changes
